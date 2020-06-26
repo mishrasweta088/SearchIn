@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SearchIn</string>
     <string name="button">Log In</string>
+    <string name="button2">log off</string>
 </resources>
