@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">SearchIn</string>
-<<<<<<< HEAD
+    <
+    <
+    <
+    <
+    <
+    <
+    < HEAD
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="todo">todo</string>
-=======
+    =======
     <string name="button">Log In</string>
     <string name="button2">log off</string>
->>>>>>> c330e0b24b51fd613c814975a86fb0c067691369
+    >>>>>>> c330e0b24b51fd613c814975a86fb0c067691369
 </resources>
