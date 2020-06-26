@@ -9,4 +9,13 @@
     <string name="register_option">Register Option</string>
     <string name="register_for_user">Register For User</string>
     <string name="register_for_organisation">Register For Organisation</string>
+    <string name="registrationform">registration form</string>
+    <string name="registerationform">Registration Form</string>
+    <string name="registrationForm">Registration Form</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="email_id">Email Id</string>
+    <string name="password">Password</string>
+    <string name="checkBox">Accept Terms and Conditions</string>
+    <string name="agree">Agree and Join</string>
 </resources>
