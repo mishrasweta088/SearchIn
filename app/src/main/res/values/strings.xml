@@ -6,4 +6,7 @@
     <string name="todo">todo</string>
     <string name="button">Log In</string>
     <string name="button2">log off</string>
+    <string name="register_option">Register Option</string>
+    <string name="register_for_user">Register For User</string>
+    <string name="register_for_organisation">Register For Organisation</string>
 </resources>
