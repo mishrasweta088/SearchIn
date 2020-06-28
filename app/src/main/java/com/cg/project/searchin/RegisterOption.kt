@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.ActionBar
 
 class RegisterOption : AppCompatActivity() {
 
@@ -15,6 +16,14 @@ class RegisterOption : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_option)
+
+        //Actionbar and its title
+        var  actionBar: ActionBar? =  getSupportActionBar();
+        actionBar!!.setTitle("Create Account");
+        
+        //enable back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true)
 
         mRegisterOrganization = findViewById(R.id.registerOrganisation_btn)
         mRegisterUser = findViewById(R.id.registerUser_btn)
