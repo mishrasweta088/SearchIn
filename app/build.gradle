@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.cg.project.searchin"
+        applicationId "com.project.searchin"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
