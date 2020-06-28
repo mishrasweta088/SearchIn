@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SearchIn</string>
-
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="todo">todo</string>
@@ -9,7 +8,6 @@
     <string name="register_option">Register Option</string>
     <string name="register_for_user">Register For User</string>
     <string name="register_for_organisation">Register For Organisation</string>
-<<<<<<< HEAD
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -21,16 +19,12 @@
     <string name="login_failed">"Login failed"</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-=======
-
-    
     <string name="registrationform">registration form</string>
     <string name="registerationform">Registration Form</string>
     <string name="registrationForm">Registration Form</string>
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
     <string name="email_id">Email Id</string>
-    <string name="password">Password</string>
     <string name="checkBox">Accept Terms and Conditions</string>
     <string name="agree">Agree and Join</string>
     <string name="addcompany">Add a Company</string>
@@ -39,5 +33,4 @@
     <string name="emailadd">Your email address at company</string>
     <string name="checkbox">I verify that i am the official representative of this company and have the right to act on behalf of my company in the creation of this page.</string>
     <string name="join">Agree and Join</string>
->>>>>>> a1fc578cd85da9eed3b72e81a0f1b6e9eb31ec86
 </resources>

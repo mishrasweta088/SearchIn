@@ -17,6 +17,14 @@
         android:textColor="#000"
         android:textSize="30sp" />
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/searchin_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/todo" />
+
     <EditText
         android:id="@+id/emailEt"
         android:inputType="textEmailAddress"
