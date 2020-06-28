@@ -23,7 +23,6 @@
         android:text="@string/register"
         android:layout_above="@id/login_btn"
 
-
         style="@style/Widget.AppCompat.Button.Colored"/>
 
     <!--Button Login-->
