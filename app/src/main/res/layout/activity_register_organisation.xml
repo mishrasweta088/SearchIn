@@ -79,6 +79,7 @@
         android:textSize="20sp" />
 
     <EditText
+
         android:id="@+id/pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,9 +88,11 @@
         android:layout_marginTop="471dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/emailadd"
-        android:inputType="textPersonName"
+        android:hint="@string/passadd"
+        android:inputType="textPassword"
         android:textSize="20sp" />
+
+   
 
     <CheckBox
         android:id="@+id/check_box"
