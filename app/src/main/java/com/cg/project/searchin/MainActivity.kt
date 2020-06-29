@@ -8,17 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    //    views
-    internal lateinit var mRegisterBtn: Button
-    internal lateinit var mLoginBtn: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //Init
-        mRegisterBtn = findViewById(R.id.register_btn)
-        mLoginBtn = findViewById(R.id.login_btn)
+       var  mRegisterBtn : Button = findViewById(R.id.register_btn)
+       var  mLoginBtn : Button = findViewById(R.id.login_btn)
 
         // handle register button click
         mRegisterBtn.setOnClickListener(object : View.OnClickListener {

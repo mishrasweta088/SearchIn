@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 
 class RegisterOption : AppCompatActivity() {
 
-    internal lateinit var mRegisterOrganization: Button
-    internal lateinit var mRegisterUser: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +21,12 @@ class RegisterOption : AppCompatActivity() {
         actionBar!!.setTitle("Create Account");
         
         //enable back button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowCustomEnabled(true)
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayShowHomeEnabled(true)
 
-        mRegisterOrganization = findViewById(R.id.registerOrganisation_btn)
-        mRegisterUser = findViewById(R.id.registerUser_btn)
+
+        var mRegisterOrganization: Button = findViewById(R.id.registerOrganisation_btn)
+        var mRegisterUser: Button = findViewById(R.id.registerUser_btn)
 
         mRegisterOrganization.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -39,9 +39,24 @@ class RegisterOption : AppCompatActivity() {
         mRegisterUser.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //start Registration Option
-                val intent = Intent(this@RegisterOption, RegisterUser::class.java)
+                val intent = Intent(this@RegisterOption, UserRegisterrr::class.java)
+                startActivity(intent)
+            }
+        })
+
+        findViewById<TextView>(R.id.have_accountTV).setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //start Registration Option
+                val intent = Intent(this@RegisterOption, UserLogin::class.java)
                 startActivity(intent)
             }
         })
     }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
 }

@@ -71,6 +71,7 @@
         android:layout_below="@+id/details"
         android:layout_alignParentTop="true"
         android:layout_marginTop="397dp"
+
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/emailadd"

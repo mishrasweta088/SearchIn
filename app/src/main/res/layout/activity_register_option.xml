@@ -37,5 +37,17 @@
         android:layout_marginBottom="251dp"
         android:text="@string/register_for_organisation" />
 
+    <TextView
+        android:id="@+id/have_accountTV"
+        android:layout_width="365dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginBottom="230dp"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="@string/already_have_account_login"
+        android:textAlignment="center"
+        android:textColor="#000007" />
+
 
 </RelativeLayout>

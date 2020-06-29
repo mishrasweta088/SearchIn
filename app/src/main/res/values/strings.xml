@@ -33,4 +33,12 @@
     <string name="emailadd">Your email address at company</string>
     <string name="checkbox">I verify that i am the official representative of this company and have the right to act on behalf of my company in the creation of this page.</string>
     <string name="join">Agree and Join</string>
+    <string name="password_error">Please enter a password</string>
+    <string name="error_invalid_password">Please enter a minimum password of 6 characters</string>
+    <string name="name_error">Please enter your name</string>
+    <string name="email_error">Please enter a email address</string>
+    <string name="error_invalid_email">Email is not valid</string>
+    <string name="already_have_account_login">Already have account? Login</string>
+    <string name="not_have_account_register">Not have account? Register</string>
+
 </resources>

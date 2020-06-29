@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_register_option.*
 import kotlinx.android.synthetic.main.activity_register_user.*
 
 class RegisterUser : AppCompatActivity() {
+
 
     //UI elements
     private var etFirstName: EditText? = null
@@ -56,6 +58,16 @@ class RegisterUser : AppCompatActivity() {
         mDatabaseReference = mDatabase!!.reference!!.child("Users")
         mAuth = FirebaseAuth.getInstance()
         btnCreateAccount!!.setOnClickListener { createNewAccount() }
+
+        //Actionbar and its title
+        var  actionBar: ActionBar? =  getSupportActionBar();
+        actionBar!!.setTitle("Create Account");
+
+        //enable back button
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayShowHomeEnabled(true)
+
+
 
 
       /* agree.setOnClickListener{
@@ -144,6 +156,12 @@ class RegisterUser : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 
