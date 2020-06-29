@@ -87,7 +87,7 @@
         android:layout_marginTop="471dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/emailadd"
+        android:hint="@string/passadd"
         android:inputType="textPersonName"
         android:textSize="20sp" />
 
