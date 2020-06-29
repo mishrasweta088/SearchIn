@@ -1,14 +1,14 @@
 package com.cg.project.searchin
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Patterns
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnFailureListener
@@ -103,25 +103,43 @@ class UserLogin : AppCompatActivity() {
         extension and text size*/
         emailEt.setMinEms(16)
 
-        linearLayout.setPadding(left: 10, top: 10, right: 10, bottom:10)
+        linearLayout.setPadding(10,10,10,10)
         builder.setView(linearLayout)
 
         // button recover
-        builder.setPositiveButton("Recover", DialogInterface.OnClickListener(){
+        builder.setPositiveButton("Recover", DialogInterface.OnClickListener { _,_ ->
+
+            //Input emAIL
+            var email : String = emailEt.getText().toString().trim()
+            begainRecovery(email)
+
+
+        })
+       /* builder.setPositiveButton("Recover", DialogInterface.OnClickListener() {
             override fun onClick(dialog: DialogInterface, which : Int ){
                 //Input emAIL
                 var email : String = emailEt.getText().toString().trim()
                 begainRecovery(email)
             }
-        })
+        })*/
+
+
 
         // button cancel
-        builder.setNegativeButton("cancel", DialogInterface.OnClickListener(){
+        builder.setNegativeButton("cancel",DialogInterface.OnClickListener { _, _ ->
+
+
+
+        })
+
+
+
+      /*  builder.setNegativeButton("cancel", DialogInterface.OnClickListener(){
             override fun onClick(dialog: DialogInterface, which : Int ){
                 // dismiss dialog
                 dialog.dismiss()
             }
-        })
+        })*/
          // show dialog
         builder.create().show()
     }
@@ -130,7 +148,7 @@ class UserLogin : AppCompatActivity() {
         // show progress dialog
         mProgressBar!!.setMessage("Sending email...")
         mProgressBar.show()
-        mAuth.sendPasswordResetEmail(email)
+        mAuth!!.sendPasswordResetEmail(email)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this@UserLogin,"Email sent", Toast.LENGTH_SHORT).show()

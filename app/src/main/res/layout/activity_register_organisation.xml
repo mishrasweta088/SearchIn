@@ -92,7 +92,7 @@
         android:inputType="textPassword"
         android:textSize="20sp" />
 
-   
+
 
     <CheckBox
         android:id="@+id/check_box"

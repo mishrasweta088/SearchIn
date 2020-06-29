@@ -40,13 +40,13 @@
     <string name="error_invalid_email">Email is not valid</string>
     <string name="already_have_account_login">Already have account? Login</string>
     <string name="not_have_account_register">Not have account? Register</string>
-<<<<<<< HEAD
+
     <string name="forgot_password_recover">Forgot Password? Recover</string>
-=======
+
     <string name="passadd">Password</string>
     <string name="emailid">Email Id</string>
     <string name="organisationLogin">Organisation Login</string>
     <string name="organisation_profile">Organisation Profile</string>
->>>>>>> ba5bccc4e9ba8d3614a15a6cceab2e9dc97487ae
+
 
 </resources>
