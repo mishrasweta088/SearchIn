@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".UserLogin">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:text="@string/organisationLogin"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/searchin_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/todo" />
+
+    <EditText
+        android:id="@+id/emailt"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/passwordt"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/emailt"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:text="@string/login"
+        android:layout_below="@+id/passwordt"/>
+
+    <TextView
+        android:id="@+id/new_orgTV"
+        android:layout_width="365dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginBottom="230dp"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="@string/not_have_account_register"
+        android:textAlignment="center"
+        android:textColor="#000007" />
+
+
+
+
+
+</RelativeLayout>
