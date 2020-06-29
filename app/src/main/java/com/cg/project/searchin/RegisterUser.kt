@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
+import java.util.HashMap
 
 
 class RegisterUser : AppCompatActivity() {
@@ -140,6 +141,31 @@ class RegisterUser : AppCompatActivity() {
                     mProgressBar.dismiss()
                     val user: FirebaseUser? = mAuth!!.getCurrentUser()
                     if (user != null) {
+
+
+                        val firstName = mFirstName?.text.toString()
+                        val  lastName = mLastName?.text.toString()
+                        val email = user!!.email
+                        val uid = user!!.uid
+
+                        val hashMap =
+                            HashMap<Any, String?>()
+                        hashMap["email"] = email
+                        hashMap["uid"] = uid
+                        hashMap["firstname"]=firstName
+                        hashMap["lastname"]=lastName
+
+                        hashMap["state"]= ""
+                        hashMap["designation"]= ""
+                        hashMap["education"]= ""
+
+                        hashMap["skills"]= ""
+                        hashMap["phone"] = ""
+                        val database = FirebaseDatabase.getInstance()
+                        val reference = database.getReference("Userprofile")
+                        reference.child(uid).setValue(hashMap)
+
+
                         Toast.makeText(this@RegisterUser,"Registered...\n"+user.email, Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@RegisterUser, UserLogin::class.java)
                         startActivity(intent)
