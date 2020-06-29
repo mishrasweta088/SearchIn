@@ -12,11 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-//import androidx.fragment.app.FragmentActivity
-//import com.google.android.gms.tasks.OnCompleteListener
+import androidx.fragment.app.FragmentActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
-//import com.google.android.gms.tasks.Task
-//import com.google.firebase.auth.AuthResult
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import java.lang.Exception
@@ -84,22 +84,19 @@ class UserLogin : AppCompatActivity() {
     private fun loginUser(email: String, password: String) {
     // show progress dialog
         mProgressBar.show()
-        mAuth!!.createUserWithEmailAndPassword(email, password)
+        mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     //Sign in success, dismiss dialog and start register activity
                     mProgressBar.dismiss()
                     val user: FirebaseUser? = mAuth!!.getCurrentUser()
-//                    if (user != null) {
-//                        Toast.makeText(this@UserLogin,"Logined...\n"+user.email, Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@UserLogin, UserProfile::class.java)
-                        startActivity(intent)
-                        finish()
-//                    }
+                    val intent = Intent(this@UserLogin, UserProfile::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     mProgressBar.dismiss()
-                    Toast.makeText(this@UserLogin, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UserLogin,"Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener(OnFailureListener (){
@@ -110,6 +107,7 @@ class UserLogin : AppCompatActivity() {
                 }
 
             })
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
