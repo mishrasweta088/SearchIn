@@ -71,8 +71,8 @@ class UserRegisterrr : AppCompatActivity() {
         mRegister.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //input details
-                val firstName :String =mFirstName.getText().toString().trim()
-                val lastName :String =mLastName.getText().toString().trim()
+//                val firstName :String =mFirstName.getText().toString().trim()
+//                val lastName :String =mLastName.getText().toString().trim()
                 val email :String =mEmail.getText().toString().trim()
                 val password :String =mPassword.getText().toString().trim()
 
@@ -147,8 +147,6 @@ class UserRegisterrr : AppCompatActivity() {
                   mProgressBar.dismiss()
                   Toast.makeText(this@UserRegisterrr,"Authentication failed.", Toast.LENGTH_SHORT).show()
               }
-
-              // ...
           }
           .addOnFailureListener(OnFailureListener (){
                 @Override fun onFailure(e : Exception){
