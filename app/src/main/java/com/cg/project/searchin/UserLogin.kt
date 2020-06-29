@@ -1,6 +1,5 @@
 package com.cg.project.searchin
 
-import android.R.attr
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -12,11 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import java.lang.Exception
@@ -28,6 +23,7 @@ class UserLogin : AppCompatActivity() {
     lateinit var mPasswordEt :EditText
     lateinit var mLoginBtn : Button
     lateinit var mProgressBar : ProgressDialog
+    lateinit var mRecoverPassTv : TextView
 
 
     //Declare an instance of FirebaseAuth
@@ -47,9 +43,9 @@ class UserLogin : AppCompatActivity() {
 
         mEmailEt = findViewById(R.id.emailEt)
         mPasswordEt = findViewById(R.id.passwordEt)
+        mRecoverPassTv = findViewById(R.id.recoverPassTv)
         mLoginBtn = findViewById(R.id.loginBtn)
         mProgressBar = ProgressDialog(this)
-        mProgressBar!!.setMessage("Logging User...")
 
         //In the onCreate() method, initialize the FirebaseAuth instance.
         mAuth = FirebaseAuth.getInstance();
@@ -59,6 +55,7 @@ class UserLogin : AppCompatActivity() {
                 //start Registration Option
                 val intent = Intent(this@UserLogin, RegisterOption::class.java)
                 startActivity(intent)
+                finish()
             }
         })
 
@@ -79,10 +76,90 @@ class UserLogin : AppCompatActivity() {
             }
         })
 
+        //recover pass textView click
+        mRecoverPassTv.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                showRecoverPasswordDialog()
+            }
+        })
+
+    }
+
+    private fun showRecoverPasswordDialog() {
+        //alert dialog
+        var builder : AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Recover Password")
+
+        // set layer linear layout
+        var linearLayout : LinearLayout = LinearLayout(this)
+
+        // views to set in dialog
+        val emailEt : EditText = EditText(this)
+        emailEt.setHint("Email")
+        linearLayout.addView(emailEt)
+        emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+
+    /*  sets the min width of a EditView to fit a text of n 'M' letters regardless of the actual text
+        extension and text size*/
+        emailEt.setMinEms(16)
+
+        linearLayout.setPadding(left: 10, top: 10, right: 10, bottom:10)
+        builder.setView(linearLayout)
+
+        // button recover
+        builder.setPositiveButton("Recover", DialogInterface.OnClickListener(){
+            override fun onClick(dialog: DialogInterface, which : Int ){
+                //Input emAIL
+                var email : String = emailEt.getText().toString().trim()
+                begainRecovery(email)
+            }
+        })
+
+        // button cancel
+        builder.setNegativeButton("cancel", DialogInterface.OnClickListener(){
+            override fun onClick(dialog: DialogInterface, which : Int ){
+                // dismiss dialog
+                dialog.dismiss()
+            }
+        })
+         // show dialog
+        builder.create().show()
+    }
+
+    private fun begainRecovery(email: String){
+        // show progress dialog
+        mProgressBar!!.setMessage("Sending email...")
+        mProgressBar.show()
+        mAuth.sendPasswordResetEmail(email)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this@UserLogin,"Email sent", Toast.LENGTH_SHORT).show()
+                    //Sign in success, dismiss dialog and start register activity
+                    mProgressBar.dismiss()
+//                    val user: FirebaseUser? = mAuth!!.getCurrentUser()
+//                    val intent = Intent(this@UserLogin, UserProfile::class.java)
+//                    startActivity(intent)
+//                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+//                    mProgressBar.dismiss()
+                    Toast.makeText(this@UserLogin,"Failed...", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener(OnFailureListener (){
+                @Override fun onFailure(e : Exception) {
+                    //get and show proper error message
+                    mProgressBar.dismiss()
+                    Toast.makeText(this@UserLogin, "" + e.getStackTrace(), Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
     }
 
     private fun loginUser(email: String, password: String) {
     // show progress dialog
+        mProgressBar!!.setMessage("Logging User...")
         mProgressBar.show()
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->

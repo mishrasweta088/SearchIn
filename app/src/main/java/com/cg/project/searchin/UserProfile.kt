@@ -46,6 +46,11 @@ class UserProfile : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed(){
+        super.onBackPressed()
+        finish()
+    }
+
     override fun onStart() {
         //check on start of app
         checkUserStatus()
