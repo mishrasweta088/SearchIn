@@ -18,7 +18,7 @@
         <!-- android:label="@string/title_activity_login" /> -->
         <activity android:name=".RegisterUser" />
         <activity android:name=".RegisterOrganisation" />
-        <activity android:name=".UserProfile" />
+        <activity android:name=".Home" />
         <activity android:name=".RegisterOption" />
         <activity android:name=".MainActivity">
             <intent-filter>

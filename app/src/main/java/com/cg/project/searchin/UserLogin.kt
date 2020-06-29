@@ -185,7 +185,7 @@ class UserLogin : AppCompatActivity() {
                     //Sign in success, dismiss dialog and start register activity
                     mProgressBar.dismiss()
                     val user: FirebaseUser? = mAuth!!.getCurrentUser()
-                    val intent = Intent(this@UserLogin, UserProfile::class.java)
+                    val intent = Intent(this@UserLogin, Home::class.java)
                     startActivity(intent)
                     finish()
                 } else {
