@@ -39,7 +39,7 @@ class RegisterOption : AppCompatActivity() {
         mRegisterUser.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //start Registration Option
-                val intent = Intent(this@RegisterOption, UserRegisterrr::class.java)
+                val intent = Intent(this@RegisterOption, RegisterUser::class.java)
                 startActivity(intent)
             }
         })

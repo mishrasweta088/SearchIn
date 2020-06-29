@@ -1,63 +1,50 @@
+
 package com.cg.project.searchin
 
-import android.app.AlertDialog
+import android.R.attr
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_register_option.*
-import kotlinx.android.synthetic.main.activity_register_user.*
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
+
 
 class RegisterUser : AppCompatActivity() {
 
-
-    //UI elements
-    private var etFirstName: EditText? = null
-    private var etLastName: EditText? = null
-    private var etEmail: EditText? = null
-    private var etPassword: EditText? = null
-    private var btnCreateAccount: Button? = null
-    private var mProgressBar: ProgressDialog? = null
+    lateinit var  mFirstName:EditText
+    lateinit var  mLastName:EditText
+    lateinit var  mEmail:EditText
+    lateinit var  mPassword:EditText
+    lateinit var  mCheckbox: CheckBox
+    lateinit var  mRegister: Button
+    lateinit var mProgressBar : ProgressDialog
+    var isValid : Boolean = true
 
     //Firebase references
-    private var mDatabaseReference: DatabaseReference? = null
-    private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
-
-    private val TAG = "CreateAccountActivity"
-
-    //global variables
-    private var firstName: String? = null
-    private var lastName: String? = null
-    private var email: String? = null
-    private var password: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
-
-        etFirstName = findViewById<View>(R.id.firstName) as EditText
-        etLastName = findViewById<View>(R.id.lastName) as EditText
-        etEmail = findViewById<View>(R.id.email_id) as EditText
-        etPassword = findViewById<View>(R.id.password) as EditText
-        btnCreateAccount = findViewById<View>(R.id.agree) as Button
-        mProgressBar = ProgressDialog(this)
-        mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference!!.child("Users")
-        mAuth = FirebaseAuth.getInstance()
-        btnCreateAccount!!.setOnClickListener { createNewAccount() }
 
         //Actionbar and its title
         var  actionBar: ActionBar? =  getSupportActionBar();
@@ -67,95 +54,108 @@ class RegisterUser : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
 
-
-
-
-      /* agree.setOnClickListener{
-           startActivity(Intent(this, MainActivity::class.java))
-        }*/
-
-
-
-
-
-
-    }// onCreate Method End
-
-    private fun createNewAccount() {
-
-        firstName = etFirstName?.text.toString()
-        lastName = etLastName?.text.toString()
-        email = etEmail?.text.toString()
-        password = etPassword?.text.toString()
-
-        if (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
-            && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-
-
-        } else {
-            Toast.makeText(this, "Enter all details", Toast.LENGTH_SHORT).show()
-        }
-
+        mFirstName = findViewById(R.id.firstName)
+        mLastName = findViewById(R.id.lastName)
+        mEmail = findViewById(R.id.email_id)
+        mPassword = findViewById(R.id.password)
+        mCheckbox = findViewById(R.id.checkBox)
+        mRegister  = findViewById(R.id.agree)
+        mProgressBar = ProgressDialog(this)
         mProgressBar!!.setMessage("Registering User...")
-        mProgressBar!!.show()
 
-        mAuth!!
-            .createUserWithEmailAndPassword(email!!, password!!)
-            .addOnCompleteListener(this) { task ->
-                mProgressBar!!.hide()
+        //In the onCreate() method, initialize the FirebaseAuth instance.
+        mAuth = FirebaseAuth.getInstance();
 
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
 
-                    val userId = mAuth!!.currentUser!!.uid
+        //handle register button click
+        mRegister.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //input details
+//                val firstName :String =mFirstName.getText().toString().trim()
+//                val lastName :String =mLastName.getText().toString().trim()
+                val email :String =mEmail.getText().toString().trim()
+                val password :String =mPassword.getText().toString().trim()
 
-                    //Verify Email
-                    verifyEmail();
+                // validate
+                if(validate()) {
 
-                    //update user profile information
-                    val currentUserDb = mDatabaseReference!!.child(userId)
-                    currentUserDb.child("firstName").setValue(firstName)
-                    currentUserDb.child("lastName").setValue(lastName)
-
-                    updateUserInfoAndUI()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this@RegisterUser, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    //register the user
+                    registerUser(email, password)
                 }
             }
+        })
     }
 
-    private fun verifyEmail() {
-        fun verifyEmail() {
-            val mUser = mAuth!!.currentUser;
-            mUser!!.sendEmailVerification()
-                .addOnCompleteListener(this) { task ->
 
-                    if (task.isSuccessful) {
-                        Toast.makeText(this@RegisterUser,
-                            "Verification email sent to " + mUser.getEmail(),
-                            Toast.LENGTH_SHORT).show()
-                    } else {
-                        Log.e(TAG, "sendEmailVerification", task.exception)
-                        Toast.makeText(this@RegisterUser,
-                            "Failed to send verification email.",
-                            Toast.LENGTH_SHORT).show()
+    private fun validate() :Boolean{
+        // Check for a valid name.
+        var flag:Boolean=true
+        if (mFirstName.getText().toString().isEmpty()) {
+            mFirstName.setError(getResources().getString(R.string.name_error))
+            flag=false
+        }
+        if (mLastName.getText().toString().isEmpty()) {
+            mLastName.setError(getResources().getString(R.string.name_error))
+            flag=false
+        }
+
+        // Check for a valid email address.
+        if (mEmail.getText().toString().isEmpty()) {
+            mEmail.setError(getResources().getString(R.string.email_error));
+            flag=false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(mEmail.getText().toString()).matches()) {
+            mEmail.setError(getResources().getString(R.string.error_invalid_email));
+            flag=false
+        }
+
+        // Check for a valid password.
+        else if (mPassword.getText().toString().isEmpty()) {
+            mPassword.setError(getResources().getString(R.string.password_error));
+            flag=false
+        } else if (mPassword.getText().length < 6) {
+            mPassword.setError(getResources().getString(R.string.error_invalid_password));
+            flag=false
+        }
+
+        //checked checkbox
+        if (!mCheckbox.isChecked) {
+            Toast.makeText(this,"Check the terms and conditions",Toast.LENGTH_LONG).show()
+            flag=false
+        }
+        return flag
+    }
+
+
+
+    private fun registerUser(email: String, password: String) {
+        mProgressBar!!.show()
+
+        mAuth!!.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    //Sign in success, dismiss dialog and start register activity
+                    mProgressBar.dismiss()
+                    val user: FirebaseUser? = mAuth!!.getCurrentUser()
+                    if (user != null) {
+                        Toast.makeText(this@RegisterUser,"Registered...\n"+user.email, Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@RegisterUser, UserLogin::class.java)
+                        startActivity(intent)
+                        finish()
                     }
+                } else {
+                    // If sign in fails, display a message to the user.
+                    mProgressBar.dismiss()
+                    Toast.makeText(this@RegisterUser,"Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
-        }
-    }
+            }
+            .addOnFailureListener(OnFailureListener (){
+                @Override fun onFailure(e : Exception){
+                    //error, dismiss progress dialog and show the error message
+                    mProgressBar.dismiss()
+                    Toast.makeText(this@RegisterUser,""+e.getStackTrace(), Toast.LENGTH_SHORT).show()
 
-    private fun updateUserInfoAndUI() {
-        fun updateUserInfoAndUI() {
-
-            //start next activity
-            val intent = Intent(this@RegisterUser, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-        }
+                }
+            })
     }
 
 
@@ -164,7 +164,4 @@ class RegisterUser : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-
 }
-
-

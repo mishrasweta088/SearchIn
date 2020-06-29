@@ -39,7 +39,7 @@ class UserLogin : AppCompatActivity() {
 
         //Actionbar and its title
         var  actionBar: ActionBar? =  getSupportActionBar();
-        actionBar!!.setTitle("Create Account");
+        actionBar!!.setTitle("Sign In");
 
         //enable back button
         actionBar.setDisplayHomeAsUpEnabled(true)
