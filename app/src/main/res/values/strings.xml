@@ -53,6 +53,11 @@
     <string name="Hello">Hello</string>
     <string name="MyConnect">MyConnect</string>
     <string name="Profile">Profile</string>
+    <string name="jobpost">Post a Job</string>
+    <string name="orgname">Organisation Name</string>
+    <string name="jobid">Job Id</string>
+    <string name="description">Job Description</string>
+    <string name="requirements">Job Requirements</string>
 
 
 </resources>
