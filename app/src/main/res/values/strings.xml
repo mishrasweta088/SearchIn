@@ -67,6 +67,8 @@
     <string name="not_have_an_account_register_now">Not have an account?Register now</string>
     <string name="login_as_organisation">login_as_organisation</string>
     <string name="login_as_user">login_as_user</string>
+    <string name="person_name">Person Name</string>
+    <string name="person_email">Person Email</string>
 
 
 </resources>
