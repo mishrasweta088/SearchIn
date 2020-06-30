@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
+import java.util.HashMap
 
 
 class RegisterOrganisation : AppCompatActivity() {
@@ -130,6 +131,24 @@ class RegisterOrganisation : AppCompatActivity() {
                     oProgressBar.dismiss()
                     val user: FirebaseUser? = oAuth!!.getCurrentUser()
                     if (user != null) {
+
+
+
+                        val orgname = oCompanyName?.text.toString()
+                        val email = user!!.email
+                        val uid = user!!.uid
+
+                        val hashMap =
+                            HashMap<Any, String?>()
+                        hashMap["email"] = email
+                        hashMap["uid"] = uid
+                        hashMap["orgname"]=orgname
+
+
+                        val database = FirebaseDatabase.getInstance()
+                        val reference = database.getReference("OrganisationDetails")
+                        reference.child(uid).setValue(hashMap)
+
                         Toast.makeText(this@RegisterOrganisation,"Registered...\n"+user.email, Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@RegisterOrganisation, UserLogin::class.java)
                         startActivity(intent)
