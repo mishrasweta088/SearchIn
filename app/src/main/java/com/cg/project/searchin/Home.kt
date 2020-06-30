@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -36,6 +37,12 @@ class Home : AppCompatActivity() {
         navigationView = findViewById<BottomNavigationView>(R.id.navigation)
         navigationView.setOnNavigationItemSelectedListener(selectedListener)
 
+        // home fragment transacion(default)
+       var fragment1:HomeFragment = HomeFragment()
+        var ft1:FragmentTransaction=supportFragmentManager.beginTransaction()
+        ft1.replace(R.id.content, fragment1, "")
+        ft1.commit()
+
        // onBackPressed()
 
     }
@@ -55,10 +62,33 @@ class Home : AppCompatActivity() {
     private val selectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> return@OnNavigationItemSelectedListener true
-                R.id.nav_profile -> return@OnNavigationItemSelectedListener true
+                R.id.nav_home -> {
+                    // home fragment transacion
+                    actionBar?.setTitle("Hello")
+                   var fragment1:HomeFragment = HomeFragment()
+                    var ft1:FragmentTransaction=supportFragmentManager.beginTransaction()
+                    ft1.replace(R.id.content, fragment1, "")
+                    ft1.commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_profile -> {
+                    actionBar?.setTitle("Profile")
+                    var fragment2:ProfileFragment = ProfileFragment()
+                    var ft2:FragmentTransaction=supportFragmentManager.beginTransaction()
+                    ft2.replace(R.id.content, fragment2, "")
+                    ft2.commit()
+                    return@OnNavigationItemSelectedListener true
+                }
 
-                R.id.nav_myConnect -> return@OnNavigationItemSelectedListener true
+                R.id.nav_myConnect -> {
+                    actionBar?.setTitle("My Connect")
+                    var fragment3:MyConnectFragment = MyConnectFragment()
+                    var ft3:FragmentTransaction=supportFragmentManager.beginTransaction()
+                    ft3.replace(R.id.content, fragment3, "")
+                    ft3.commit()
+
+                    return@OnNavigationItemSelectedListener true
+                }
             }
             false
         }
