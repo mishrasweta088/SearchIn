@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
@@ -13,6 +14,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+=======
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+>>>>>>> d6a9ea027dc8115c51601c863a8f2301e7f6f701
 
 //import com.project.searchin.R
 
@@ -21,6 +27,7 @@ import java.lang.Exception
  */
 class ProfileFragment : Fragment() {
 
+<<<<<<< HEAD
     //firebase
     lateinit var firebaseAuth : FirebaseAuth
     lateinit var user : FirebaseUser
@@ -32,12 +39,23 @@ class ProfileFragment : Fragment() {
     lateinit var nameTv : TextView
     lateinit var emailTv : TextView
     lateinit var phoneTv : TextView
+=======
+//firebase
+  lateinit var firebaseAuth:FirebaseAuth
+    lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var user:Firebase
+
+    //views from xml
+
+
+>>>>>>> d6a9ea027dc8115c51601c863a8f2301e7f6f701
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+<<<<<<< HEAD
         var view : View =inflater.inflate(R.layout.fragment_profile, container, false)
 
         //init firebase
@@ -86,6 +104,10 @@ class ProfileFragment : Fragment() {
             }
         })
 
+=======
+
+        val view:View =inflater.inflate(R.layout.fragment_profile, container, false)
+>>>>>>> d6a9ea027dc8115c51601c863a8f2301e7f6f701
         return view
     }
 
