@@ -14,7 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_register_user.*
 import java.lang.Exception
+import java.util.HashMap
 
 
 class UserLogin : AppCompatActivity() {
@@ -115,13 +119,7 @@ class UserLogin : AppCompatActivity() {
 
 
         })
-       /* builder.setPositiveButton("Recover", DialogInterface.OnClickListener() {
-            override fun onClick(dialog: DialogInterface, which : Int ){
-                //Input emAIL
-                var email : String = emailEt.getText().toString().trim()
-                begainRecovery(email)
-            }
-        })*/
+
 
 
 
@@ -132,15 +130,6 @@ class UserLogin : AppCompatActivity() {
 
         })
 
-
-
-      /*  builder.setNegativeButton("cancel", DialogInterface.OnClickListener(){
-            override fun onClick(dialog: DialogInterface, which : Int ){
-                // dismiss dialog
-                dialog.dismiss()
-            }
-        })*/
-         // show dialog
         builder.create().show()
     }
 
@@ -185,6 +174,42 @@ class UserLogin : AppCompatActivity() {
                     //Sign in success, dismiss dialog and start register activity
                     mProgressBar.dismiss()
                     val user: FirebaseUser? = mAuth!!.getCurrentUser()
+                    if(task.getResult()!!.getAdditionalUserInfo()!!.isNewUser()){
+
+                        //get user email and uid from auth
+                        val email = user!!.getEmail()
+                        val uid = user!!.getUid()
+
+                        //when user is registered store user info in firebase realtime database to
+                        //using Hash map
+                        val hashMap = HashMap<Any, String?>()
+
+                        //put into the hash map
+                        hashMap.put("email",email)
+                        hashMap.put("uid",uid)
+                        hashMap.put("firstName", firstName.toString())
+                        hashMap.put("lastName",lastName.toString())
+                        hashMap.put("state","")
+                        hashMap.put("designation","")
+                        hashMap.put("skills","")
+                        hashMap.put("phone","")
+
+                        //firebase database instance
+                        val database = FirebaseDatabase.getInstance()
+                        //path to store user data named "UserProfile"
+                        val reference : DatabaseReference = database.getReference("UserProfile")
+
+                        //put data within a hashmap in database
+                        reference.child(uid).setValue(hashMap)
+
+                    }
+
+
+
+                    //show user email in toast
+                    Toast.makeText(this@UserLogin,""+user!!.getEmail(), Toast.LENGTH_SHORT).show()
+
+                    //goto home page after login
                     val intent = Intent(this@UserLogin, Home::class.java)
                     startActivity(intent)
                     finish()
