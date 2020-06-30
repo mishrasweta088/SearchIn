@@ -1,15 +1,14 @@
 package com.cg.project.searchin
 
-import android.content.ClipData
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -28,7 +27,7 @@ class Home : AppCompatActivity() {
 
         //Actionbar and its title
         var actionBar: ActionBar? = getSupportActionBar();
-        actionBar!!.setTitle("Profile");
+        actionBar!!.setTitle("Home");
 
         //init
         firebaseAuth = FirebaseAuth.getInstance()
@@ -36,6 +35,8 @@ class Home : AppCompatActivity() {
 
         navigationView = findViewById<BottomNavigationView>(R.id.navigation)
         navigationView.setOnNavigationItemSelectedListener(selectedListener)
+
+       // onBackPressed()
 
     }
 
@@ -97,5 +98,20 @@ class Home : AppCompatActivity() {
             checkUserStatus()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+   override fun onBackPressed() {
+
+       val builder= AlertDialog.Builder(this)
+       builder.setTitle("Are you sure")
+       builder.setMessage("Do you want to quit?")
+       builder.setPositiveButton("Yes",{ dialogInterface: DialogInterface?, i: Int ->finish()  })
+       builder.setNegativeButton("No",{ dialogInterface: DialogInterface?, i: Int -> })
+       val dialog: AlertDialog =builder.create()
+       dialog.show()
+       // builder.show()
+
+       true
     }
 }
