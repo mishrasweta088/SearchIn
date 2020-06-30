@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -33,6 +33,11 @@ class ProfileFragment : Fragment() {
     lateinit var emailTv : TextView
     lateinit var phoneTv : TextView
 
+    lateinit var mState : TextView
+    lateinit var mDesignation : TextView
+    lateinit var mSkills : TextView
+    lateinit var mEducation : TextView
+
 
     //views from xml
 
@@ -43,6 +48,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+
         var view : View =inflater.inflate(R.layout.fragment_profile, container, false)
 
         //init firebase
@@ -55,6 +62,10 @@ class ProfileFragment : Fragment() {
         nameTv = view.findViewById(R.id.nameTv)
         emailTv = view.findViewById(R.id.emailTv)
         phoneTv = view.findViewById(R.id.phoneTv)
+        mState=view.findViewById(R.id.state)
+        mDesignation=view.findViewById(R.id.designation)
+        mSkills=view.findViewById(R.id.skills)
+        mEducation=view.findViewById(R.id.education)
 
         var query : Query = firebaseDatabase.getReference("Userprofile/"+user.uid)
         query.addListenerForSingleValueEvent( object : ValueEventListener {
@@ -67,11 +78,19 @@ class ProfileFragment : Fragment() {
                     val email = "" + ds.child("email").getValue().toString()
                     val phone = "" + ds.child("phone").getValue().toString()
                     val image = "" + ds.child("image").getValue().toString()
+                    val state=""+ds.child("state").getValue().toString()
+                    val designation=""+ds.child("designation").getValue().toString()
+                    val skills=""+ds.child("skills").getValue().toString()
+                    val education=""+ds.child("education").getValue().toString()
 
                     //set data
                     nameTv.setText(name)
                     emailTv.setText(email)
                     phoneTv.setText(phone)
+                    mState.setText(state)
+                    mDesignation.setText(designation)
+                    mSkills.setText(skills)
+                    mEducation.setText(education)
                     try {
                         //if image is received then set
                         Picasso.get().load(image).into(avatarTv)
@@ -96,5 +115,7 @@ class ProfileFragment : Fragment() {
       //  val view:View =inflater.inflate(R.layout.fragment_profile, container, false)
         return view
     }
+
+
 
 }

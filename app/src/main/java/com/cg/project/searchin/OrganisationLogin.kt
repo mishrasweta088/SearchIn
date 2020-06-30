@@ -86,7 +86,7 @@ class OrganisationLogin : AppCompatActivity() {
                     //Sign in success, dismiss dialog and start register activity
                     oProgressBar.dismiss()
                     val user: FirebaseUser? = oAuth!!.getCurrentUser()
-                    val intent = Intent(this@OrganisationLogin, Home::class.java)
+                    val intent = Intent(this@OrganisationLogin, JobPost::class.java)
                     startActivity(intent)
                     finish()
                 } else {

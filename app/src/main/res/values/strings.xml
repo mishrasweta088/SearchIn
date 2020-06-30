@@ -58,6 +58,11 @@
     <string name="jobid">Job Id</string>
     <string name="description">Job Description</string>
     <string name="requirements">Job Requirements</string>
+    <string name="state">State</string>
+    <string name="phoneno">Phone Numner</string>
+    <string name="designation">Designation</string>
+    <string name="skills">Skills</string>
+    <string name="education">Education</string>
 
 
 </resources>
