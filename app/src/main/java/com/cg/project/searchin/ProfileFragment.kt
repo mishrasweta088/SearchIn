@@ -1,21 +1,19 @@
 package com.cg.project.searchin
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
-import java.lang.Exception
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
+
 
 //import com.project.searchin.R
 
@@ -28,7 +26,6 @@ class ProfileFragment : Fragment() {
     lateinit var firebaseAuth : FirebaseAuth
     lateinit var user : FirebaseUser
     lateinit var firebaseDatabase: FirebaseDatabase
-    lateinit var databaseReference: DatabaseReference
 
     //views
     lateinit var avatarTv : ImageView
@@ -42,13 +39,9 @@ class ProfileFragment : Fragment() {
 
 
     override fun onCreateView(
-
-
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         // Inflate the layout for this fragment
         var view : View =inflater.inflate(R.layout.fragment_profile, container, false)
 
@@ -56,7 +49,6 @@ class ProfileFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         user = firebaseAuth.getCurrentUser()!!
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("UserProfile")
 
         //init views
         avatarTv = view.findViewById(R.id.avatarTV)
@@ -64,19 +56,17 @@ class ProfileFragment : Fragment() {
         emailTv = view.findViewById(R.id.emailTv)
         phoneTv = view.findViewById(R.id.phoneTv)
 
-        var query : Query = databaseReference.orderByChild("email").equalTo(user.getEmail())
-        query.addValueEventListener( object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+        var query : Query = firebaseDatabase.getReference("Userprofile/"+user.uid)
+        query.addListenerForSingleValueEvent( object : ValueEventListener {
+            override fun onDataChange(
+                ds: DataSnapshot) {
 
-                //check until required data get
-                for (ds in dataSnapshot.getChildren()) {
-
+                try {
                     //get data
-                    val name = "" + ds.child("name").getValue()
-                    val email = "" + ds.child("email").getValue()
-                    val phone = "" + ds.child("phone").getValue()
-                    val image = "" + ds.child("image").getValue()
-
+                    val name = "" +ds.child("firstname").getValue().toString()
+                    val email = "" + ds.child("email").getValue().toString()
+                    val phone = "" + ds.child("phone").getValue().toString()
+                    val image = "" + ds.child("image").getValue().toString()
 
                     //set data
                     nameTv.setText(name)
@@ -89,7 +79,11 @@ class ProfileFragment : Fragment() {
                         //if there is any exception while getting image then set default
                         Picasso.get().load(R.drawable.ic_add_image).into(avatarTv)
                     }
+                } catch (e: NullPointerException) {
+
+                    e.printStackTrace()
                 }
+
             }
 
 
