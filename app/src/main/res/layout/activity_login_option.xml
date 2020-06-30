@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterOption"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/registerOption"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="368dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/login_option"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/loginUser_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/loginOrganisation_btn"
+        android:layout_marginBottom="56dp"
+        android:text="@string/login_as_user" />
+
+    <Button
+        android:id="@+id/loginOrganisation_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="251dp"
+        android:text="@string/login_as_organisation" />
+
+    <TextView
+        android:id="@+id/new_userTV"
+        android:layout_width="365dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginBottom="230dp"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="@string/not_have_an_account_register_now"
+        android:textAlignment="center"
+        android:textColor="#000007" />
+
+
+</RelativeLayout>
