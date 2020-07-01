@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="251dp"
-        android:text="@string/login_as_organisation" />
+        android:text="Login as Organisation" />
 
     <TextView
         android:id="@+id/new_userTV"
@@ -43,11 +43,11 @@
         android:layout_height="40dp"
         android:layout_marginTop="470dp"
         android:layout_marginBottom="230dp"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:gravity="center_horizontal"
         android:text="@string/not_have_an_account_register_now"
         android:textAlignment="center"
-        android:textColor="#000007" />
+        android:textColor="#000000" />
 
 
 </RelativeLayout>
