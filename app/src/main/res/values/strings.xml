@@ -71,6 +71,7 @@
     <string name="person_email">Person Email</string>
     <string name="additionalDetails">Additional Details</string>
     <string name="additional">Add Additional Details</string>
+    <string name="uploadbtn">Upload</string>
 
 
 </resources>
