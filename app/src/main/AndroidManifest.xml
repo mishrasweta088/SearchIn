@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginOption"></activity>
-        <activity android:name=".JobPost"></activity>
+        <activity android:name=".AddPostActivity"></activity>
+        <activity android:name=".LoginOption" />
+        <activity android:name=".JobPost" />
         <activity android:name=".OrganisationProfile" />
         <activity android:name=".OrganisationLogin" />
         <activity android:name=".UserLogin" /> <!-- <activity -->
