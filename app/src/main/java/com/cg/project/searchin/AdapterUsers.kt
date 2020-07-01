@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.cg.project.searchin.AdapterUsers.MyHolder
 import com.squareup.picasso.Picasso
@@ -22,6 +23,8 @@ class AdapterUsers : RecyclerView.Adapter<MyHolder> {
     constructor(usersList: List<ModelUsers>?) {
         this.usersList = usersList
     }
+
+    constructor(fragmentActivity: FragmentActivity?, userList: List<ModelUsers>?)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyHolder {
 
