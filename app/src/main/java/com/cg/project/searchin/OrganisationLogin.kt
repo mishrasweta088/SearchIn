@@ -50,7 +50,7 @@ class OrganisationLogin : AppCompatActivity() {
         //In the onCreate() method, initialize the FirebaseAuth instance.
         oAuth = FirebaseAuth.getInstance();
 
-        findViewById<TextView>(R.id.new_userTV).setOnClickListener(object : View.OnClickListener {
+        findViewById<TextView>(R.id.new_orgTV).setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //start Registration Option
                 val intent = Intent(this@OrganisationLogin, RegisterOption::class.java)

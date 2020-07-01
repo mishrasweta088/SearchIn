@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         mLoginBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //start Registration Option
-                val intent = Intent(this@MainActivity, UserLogin::class.java)
+                val intent = Intent(this@MainActivity, LoginOption::class.java)
                 startActivity(intent)
             }
         })

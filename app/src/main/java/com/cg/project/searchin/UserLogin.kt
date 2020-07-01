@@ -189,7 +189,7 @@ class UserLogin : AppCompatActivity() {
                         hashMap.put("uid",uid)
                         hashMap.put("firstName", firstName.toString())
                         hashMap.put("lastName",lastName.toString())
-                       
+
 
                         //firebase database instance
                         val database = FirebaseDatabase.getInstance()

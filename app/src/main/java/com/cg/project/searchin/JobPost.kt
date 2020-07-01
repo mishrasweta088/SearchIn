@@ -1,5 +1,7 @@
 package com.cg.project.searchin
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -106,6 +108,21 @@ class JobPost : AppCompatActivity() {
         }
 
 
+    }
+
+
+    override fun onBackPressed() {
+
+        val builder= AlertDialog.Builder(this)
+        builder.setTitle("Are you sure")
+        builder.setMessage("Do you want to quit?")
+        builder.setPositiveButton("Yes",{ dialogInterface: DialogInterface?, i: Int ->finish()  })
+        builder.setNegativeButton("No",{ dialogInterface: DialogInterface?, i: Int -> })
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+        // builder.show()
+
+        true
     }
 
     }
