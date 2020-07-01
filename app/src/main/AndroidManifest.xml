@@ -3,6 +3,8 @@
     package="com.cg.project.searchin">
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".UserAdditionalDetails"></activity>
-        <activity android:name="com.project.searchin.UserAdditional" />
+
         <activity android:name=".AddPostActivity" />
         <activity android:name=".LoginOption" />
         <activity android:name=".JobPost" />
