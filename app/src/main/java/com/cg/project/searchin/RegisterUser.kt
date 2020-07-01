@@ -155,12 +155,7 @@ class RegisterUser : AppCompatActivity() {
                         hashMap["firstname"]=firstName
                         hashMap["lastname"]=lastName
 
-                        hashMap["state"]= ""
-                        hashMap["designation"]= ""
-                        hashMap["education"]= ""
 
-                        hashMap["skills"]= ""
-                        hashMap["phone"] = ""
                         val database = FirebaseDatabase.getInstance()
                         val reference = database.getReference("Userprofile")
                         reference.child(uid).setValue(hashMap)

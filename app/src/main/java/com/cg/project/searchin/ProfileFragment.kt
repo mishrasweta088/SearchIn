@@ -1,5 +1,7 @@
 package com.cg.project.searchin
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,12 +33,7 @@ class ProfileFragment : Fragment() {
     lateinit var avatarTv : ImageView
     lateinit var nameTv : TextView
     lateinit var emailTv : TextView
-    lateinit var phoneTv : TextView
-
-    lateinit var mState : TextView
-    lateinit var mDesignation : TextView
-    lateinit var mSkills : TextView
-    lateinit var mEducation : TextView
+    lateinit var madditional:TextView
 
 
     //views from xml
@@ -61,11 +58,18 @@ class ProfileFragment : Fragment() {
         avatarTv = view.findViewById(R.id.avatarTV)
         nameTv = view.findViewById(R.id.nameTv)
         emailTv = view.findViewById(R.id.emailTv)
-        phoneTv = view.findViewById(R.id.phoneTv)
-        mState=view.findViewById(R.id.state)
-        mDesignation=view.findViewById(R.id.designation)
-        mSkills=view.findViewById(R.id.skills)
-        mEducation=view.findViewById(R.id.education)
+        madditional=view.findViewById(R.id.additional)
+
+        madditional.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+             val intent:Intent= Intent(getActivity(),UserAdditionalDetails::class.java)
+                startActivity(intent)
+
+                }
+            })
+
+
+
 
         var query : Query = firebaseDatabase.getReference("Userprofile/"+user.uid)
         query.addListenerForSingleValueEvent( object : ValueEventListener {
@@ -86,11 +90,7 @@ class ProfileFragment : Fragment() {
                     //set data
                     nameTv.setText(name)
                     emailTv.setText(email)
-                    phoneTv.setText(phone)
-                    mState.setText(state)
-                    mDesignation.setText(designation)
-                    mSkills.setText(skills)
-                    mEducation.setText(education)
+
                     try {
                         //if image is received then set
                         Picasso.get().load(image).into(avatarTv)

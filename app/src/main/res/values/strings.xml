@@ -69,6 +69,8 @@
     <string name="login_as_user">login_as_user</string>
     <string name="person_name">Person Name</string>
     <string name="person_email">Person Email</string>
+    <string name="additionalDetails">Additional Details</string>
+    <string name="additional">Add Additional Details</string>
 
 
 </resources>
