@@ -2,16 +2,15 @@ package com.cg.project.searchin
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-
 
 
 /**
@@ -69,11 +68,15 @@ class MyConnectFragment : Fragment() {
 
                 }
 
-                //adapter
+                var linearLayoutManager=LinearLayoutManager(context);
+                recycleView!!.layoutManager = linearLayoutManager
                 adapterUsers = AdapterUsers(activity,userList)
+                recycleView!!.setAdapter(adapterUsers)
+                //adapter
+
                 //adapterUsers = AdapterUsers(getActivity(), userList)
                 //set adapter of recycler view
-                recycleView!!.setAdapter(adapterUsers)
+
 
             }
         })
