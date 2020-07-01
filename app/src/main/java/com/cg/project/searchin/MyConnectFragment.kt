@@ -1,6 +1,7 @@
 package com.cg.project.searchin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,7 @@ class MyConnectFragment : Fragment() {
 
     var recycleView: RecyclerView? = null
     var adapterUsers: AdapterUsers? = null
-    var userList: List<ModelUsers>? = null
+    var userList: MutableList<ModelUsers>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +48,7 @@ class MyConnectFragment : Fragment() {
         //get current user
         val fUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         //get path of database named "Users" containing users info
-        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("Userprofile")
 
         //get all data from path
         ref.addValueEventListener(object : ValueEventListener {
@@ -57,20 +58,22 @@ class MyConnectFragment : Fragment() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userList.clear()
-                for (ds in dataSnapshot.getChildren()) {
-                    val modelUser: ModelUsers? = ds.getValue(ModelUsers::class.java)
+
+                for (ds in dataSnapshot.children) {
+                   val modelUser: ModelUsers? = ds.getValue(ModelUsers::class.java)
                     //get all users except currently signed in user
-                    if (!modelUser.getUid().equals(fUser!!.getUid())) {
-                        userList.add()
-                    }
-                    //adapter
-                    adapterUsers = AdapterUsers(activity,userList)
-                    //adapterUsers = AdapterUsers(getActivity(), userList)
-                    //set adapter of recycler view
-                    recycleView!!.setAdapter(adapterUsers)
+
+                    userList!!.add(modelUser!!)
+
+                    Log.i("test", (ds.getValue(ModelUsers::class.java))!!.email)
+
                 }
 
-
+                //adapter
+                adapterUsers = AdapterUsers(activity,userList)
+                //adapterUsers = AdapterUsers(getActivity(), userList)
+                //set adapter of recycler view
+                recycleView!!.setAdapter(adapterUsers)
 
             }
         })
