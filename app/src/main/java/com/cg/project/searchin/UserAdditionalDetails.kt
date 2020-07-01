@@ -8,7 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import java.util.HashMap
 
 class UserAdditionalDetails : AppCompatActivity() {
@@ -20,6 +21,10 @@ class UserAdditionalDetails : AppCompatActivity() {
     lateinit var savebtn_user: Button
 
     private var mAuth: FirebaseAuth? = null
+
+//    lateinit var firebaseAuth : FirebaseAuth
+    lateinit var user : FirebaseUser
+    lateinit var firebaseDatabase: FirebaseDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +56,50 @@ class UserAdditionalDetails : AppCompatActivity() {
                 }
             }
         })
+
+
+        //View user Additional Details
+
+//
+//
+//        val user: FirebaseUser? = mAuth!!.getCurrentUser()
+//        var query : Query = firebaseDatabase.getReference("UserAdditionalDetails/"+user?.uid)
+//        query.addListenerForSingleValueEvent( object : ValueEventListener {
+//            override fun onDataChange(
+//                ds: DataSnapshot
+//            ) {
+//                if (user != null) {
+//
+//                try {
+//                    //get data
+//                    val state = "" +ds.child("state").getValue().toString()
+//                    val designation = "" + ds.child("designation").getValue().toString()
+//                    val skills=""+ds.child("skills").getValue().toString()
+//                    val education=""+ds.child("education").getValue().toString()
+//
+//
+//                    //set data
+//                    mState.setText(state)
+//                    mDesignation.setText(designation)
+//                    mSkills.setText(skills)
+//                    mEducation.setText(education)
+//
+//
+//                } catch (e: NullPointerException) {
+//
+//                    e.printStackTrace()
+//                }
+//
+//            }
+//            }
+//
+//
+//            override fun onCancelled(p0: DatabaseError) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//        })
+
+
     }
 
 

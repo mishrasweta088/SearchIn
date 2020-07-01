@@ -35,6 +35,11 @@ class ProfileFragment : Fragment() {
     lateinit var emailTv : TextView
     lateinit var madditional:TextView
 
+    lateinit var mstate:TextView
+    lateinit var mdesignation:TextView
+    lateinit var mskills:TextView
+    lateinit var meducation:TextView
+
 
     //views from xml
 
@@ -59,6 +64,10 @@ class ProfileFragment : Fragment() {
         nameTv = view.findViewById(R.id.nameTv)
         emailTv = view.findViewById(R.id.emailTv)
         madditional=view.findViewById(R.id.additional)
+        mstate=view.findViewById(R.id.state)
+        mdesignation=view.findViewById(R.id.designation)
+        mskills=view.findViewById(R.id.skills)
+        meducation=view.findViewById(R.id.education)
 
         madditional.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -67,6 +76,45 @@ class ProfileFragment : Fragment() {
 
                 }
             })
+
+
+
+
+        //view additional data
+        var queryuser : Query = firebaseDatabase.getReference("UserAdditionalDetails/"+user.uid)
+        queryuser.addListenerForSingleValueEvent( object : ValueEventListener {
+            override fun onDataChange(
+                ds: DataSnapshot) {
+
+                try {
+                    //get data
+
+                    val image = "" + ds.child("image").getValue().toString()
+                    val state=""+ds.child("state").getValue().toString()
+                    val designation=""+ds.child("designation").getValue().toString()
+                    val skills=""+ds.child("skills").getValue().toString()
+                    val education=""+ds.child("education").getValue().toString()
+
+                    //set data
+                    mstate.setText(state)
+                    mdesignation.setText(designation)
+                    mskills.setText(skills)
+                    meducation.setText(education)
+
+
+                } catch (e: NullPointerException) {
+
+                    e.printStackTrace()
+                }
+
+            }
+
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
+
 
 
 
@@ -80,7 +128,7 @@ class ProfileFragment : Fragment() {
                     //get data
                     val name = "" +ds.child("firstname").getValue().toString()
                     val email = "" + ds.child("email").getValue().toString()
-                    val phone = "" + ds.child("phone").getValue().toString()
+//                    val phone = "" + ds.child("phone").getValue().toString()
                     val image = "" + ds.child("image").getValue().toString()
                     val state=""+ds.child("state").getValue().toString()
                     val designation=""+ds.child("designation").getValue().toString()
@@ -110,6 +158,11 @@ class ProfileFragment : Fragment() {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
+
+
+
+
+
 
 
       //  val view:View =inflater.inflate(R.layout.fragment_profile, container, false)
