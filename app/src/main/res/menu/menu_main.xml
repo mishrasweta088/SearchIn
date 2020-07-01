@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_logout"
         android:title="Logout" />
-    <item
-        android:id="@+id/action_search"
-        android:title="Search"
-        android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="always"/>
 
-    <item android:id= "@+id/ation_search"
+    <item android:id= "@+id/action_search"
         android:title="Search"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always"

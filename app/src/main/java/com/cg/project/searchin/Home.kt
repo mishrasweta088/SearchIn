@@ -127,6 +127,13 @@ class Home : AppCompatActivity() {
             firebaseAuth.signOut()
             checkUserStatus()
         }
+
+        if(id==R.id.action_add_post){
+            var intent:Intent=Intent(this@Home,AddPostActivity::class.java)
+            startActivity(intent)
+
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
