@@ -3,9 +3,7 @@ package com.cg.project.searchin
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
@@ -160,15 +158,53 @@ class ProfileFragment : Fragment() {
         })
 
 
-
-
-
-
-
       //  val view:View =inflater.inflate(R.layout.fragment_profile, container, false)
         return view
     }
 
+    private fun checkUserStatus(){
+        //get current user
+        var user: FirebaseUser? = firebaseAuth.getCurrentUser()
+        if(user != null){
+            // user is signed in stay here
+            //set email of logged user
+            // mProfileTv.setText(user.getEmail())
+        }else{
+            //user not signed in, go to main activity
+            val intent = Intent(getActivity(), MainActivity::class.java)
+            getActivity()!!.finish()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true) // to show menu option in fragments
+        super.onCreate(savedInstanceState)
+    }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        //inflate menu
+        inflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu,inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // get option id
+        var id = item.getItemId()
+        if(id == R.id.action_logout){
+            firebaseAuth.signOut()
+            checkUserStatus()
+        }
+
+//        if(id==R.id.action_add_post){
+//            var intent: Intent = Intent(this@H,AddPostActivity::class.java)
+//            startActivity(intent)
+//
+//        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }
