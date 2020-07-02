@@ -10,7 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.squareup.picasso.Picasso
+import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
@@ -20,10 +23,14 @@ class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
     lateinit var context :Context
     lateinit var chatList : List<ModelChat>
     lateinit var imageUrl:String
-     //firebase
+    //firebase
     lateinit var fUser:FirebaseUser
 
-    constructor() : super()
+    constructor(
+        param: Any?,
+        chatList: ArrayList<ModelChat>,
+        hisImage: String?
+    ) : super()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyHolder {
         //inflate Layouts: row chat left.xml for receiver,row chat right .xml for sender
@@ -36,7 +43,8 @@ class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
             return MyHolder(view)
         }
     }
-    override fun onBindViewHolder(holder: MyHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: AdapterChat.MyHolder, position: Int) {
         //get data
         var message : String? = chatList.get(position).message
         var timeStamp : String? = chatList.get(position).timestamp
@@ -47,12 +55,30 @@ class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
         var dateTime : String = DateFormat.format("dd/mm/yyyy hh:mm: aa",cal).toString()
 
         //set data
-        holder.messageTV.setText(message)
+        holder.messageTv.setText(message)
+        holder.timeTv.setText(dateTime)
+        try {
+            Picasso.get().load(imageUrl).into(holder.profileTv)
+        }catch (e:Exception){
+
+        }
+        //set seen delivered
+        if(position==chatList.size -1){
+            if (chatList.get(position).isSeen) {
+                holder.isSeenTv.setText("Seen")
+            }else{
+                holder.isSeenTv.setText("Delivered")
+            }
+        }else{
+            holder.isSeenTv.setVisibility(View.GONE)
+
+        }
+        holder.messageTv.setText(message)
     }
 
     override fun getItemCount(): Int {
         return chatList.size
-         }
+    }
 
     override fun getItemViewType(position: Int): Int {
         //get currently sign in user
@@ -86,3 +112,5 @@ class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
 
 
 }
+
+

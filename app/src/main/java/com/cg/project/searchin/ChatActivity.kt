@@ -5,19 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.MenuItemCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import java.lang.Exception
-import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class ChatActivity : AppCompatActivity() {
@@ -37,8 +36,19 @@ class ChatActivity : AppCompatActivity() {
     var firebaseDatabase: FirebaseDatabase? =null
     var userDbRef :DatabaseReference? = null
 
+    //for checking if user has seen message or not
+    lateinit var  seenListener: ValueEventListener
+    lateinit var userRefForSeen : DatabaseReference
+
+
+    lateinit var chatList : List<ModelChat>
+    lateinit var adapterChat: AdapterChat
+
     var hisUid:String? = null
     var myUid:String? = null
+    var hisImage:String? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +66,13 @@ class ChatActivity : AppCompatActivity() {
         messageEt = findViewById(R.id.messageEt)
         sendBtn = findViewById(R.id.sendBtn)
 
+        //Layout (LinearLayout) for RecyclerView
+        var linearLayoutManager: LinearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.setStackFromEnd(true)
+
+        //recyclerview properties
+        recyclerView.setHasFixedSize(true)
+        recyclerView.setLayoutManager(linearLayoutManager)
 
         /*on clicking user from user list we have passed that user's uid using intentso get that
           uid here to get  the profile picture , name, and start chat with that user*/
@@ -77,13 +94,13 @@ class ChatActivity : AppCompatActivity() {
                 for (ds in dataSnapshot.getChildren()){
                     // get data
                     var name :String = ""+dataSnapshot.child("name").getValue()
-                    var image : String =""+dataSnapshot.child("image").getValue()
+                    hisImage  =""+dataSnapshot.child("image").getValue()
 
                     //set Data
                     nameTv.setText(name)
                     try {
                         //image received , set it to imageview
-                        Picasso.get().load(image).placeholder(R.drawable.ic_default_image_white).into(profileIv)
+                        Picasso.get().load(hisImage).placeholder(R.drawable.ic_default_image_white).into(profileIv)
 
                     }catch (e : Exception){
                         Picasso.get().load(R.drawable.ic_default_image_white).into(profileIv)
@@ -109,15 +126,75 @@ class ChatActivity : AppCompatActivity() {
                 }
             }
         })
+
+        readMessages()
+        seenMessage()
+    }
+
+    private fun seenMessage() {
+        userRefForSeen = FirebaseDatabase.getInstance().getReference("Chats")
+        seenListener = userRefForSeen.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.getChildren()) {
+                    var chat: ModelChat? = ds.getValue(ModelChat::class.java)
+                    if (chat!!.receiver.equals(myUid) && chat.sender.equals(hisUid)) {
+                        var hasSeenHashMap: HashMap<String, Any> = HashMap()
+                        hasSeenHashMap.put("isSeen", true)
+                        ds.getRef().updateChildren(hasSeenHashMap)
+
+                    }
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+    }
+
+    private fun readMessages() {
+        chatList=ArrayList<ModelChat>()
+        var dbRef:DatabaseReference = FirebaseDatabase.getInstance().getReference("Chats")
+        dbRef.addValueEventListener( object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                chatList.clear()
+                for (ds in dataSnapshot.getChildren()){
+                    var chat: ModelChat? = ds.getValue(ModelChat::class.java)
+                    if(chat!!.receiver.equals(myUid) && chat.sender.equals(hisUid) ||
+                        chat!!.receiver.equals(hisUid) && chat.sender.equals(myUid)){
+                        (chatList as ArrayList<ModelChat>).add(chat)
+                    }
+
+                    //adaptor
+                    adapterChat = AdapterChat(this@ChatActivity,
+                        chatList as ArrayList<ModelChat>,hisImage)
+                    adapterChat.notifyDataSetChanged()
+                    //set adaptor to recyclerview
+                    recyclerView.setAdapter(adapterChat)
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+
+        })
+
     }
 
     private fun sendMessage(message: String) {
         var databaseReference:DatabaseReference = FirebaseDatabase.getInstance().getReference()
 
-        var hashMap : HashMap<String, String> = HashMap<String, String>()
+        var timestamp :String= System.currentTimeMillis().toString()
+
+        var hashMap : HashMap<String, Any> = HashMap<String, Any>()
         myUid?.let { hashMap.put("sender", it) }
         hisUid?.let { hashMap.put("receiver", it) }
         hashMap.put("message",message)
+        hashMap.put("timestamp",timestamp)
+        hashMap.put("isSeen",false)
         databaseReference.child("Chats").push().setValue(hashMap)
 
         //reset edittext after sending message
@@ -141,9 +218,15 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
+
+    override fun onPause() {
+        super.onPause()
+    }
+
     override fun onStart() {
         checkUserStatus()
         super.onStart()
+        userRefForSeen.removeEventListener(seenListener)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
