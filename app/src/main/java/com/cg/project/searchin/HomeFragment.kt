@@ -26,10 +26,15 @@ class HomeFragment : Fragment() {
 
     //recycler view
     var recyclerView: RecyclerView? = null
+    var recyclerView1:RecyclerView?=null
+
+
 
     //user adaptor nd list
     var adapterUsers : AdapterUsers? =null
     var usersList: List<ModelUsers>? = null
+    var postList: List<ModelPost>? = null
+    var adapterPosts:AdapterPosts?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +45,22 @@ class HomeFragment : Fragment() {
 
         //init recycler view
         recyclerView = view.findViewById(R.id.user_recyclerView)
+        recyclerView1 = view.findViewById(R.id.post_recyclerView)
+
+        var layoutManager:LinearLayoutManager= LinearLayoutManager(activity)
+        // show newest post first for this load from last
+        layoutManager.setStackFromEnd(true)
+        layoutManager.setReverseLayout(true)
+        //set layout to recyclerview
+        recyclerView1!!.setLayoutManager(layoutManager)
+
+        // initial post list
+        postList=ArrayList<ModelPost>()
+        loadPosts()
 
         //set it's properties
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.setLayoutManager(LinearLayoutManager(activity))
+        recyclerView1!!.setHasFixedSize(true)
+        recyclerView1!!.setLayoutManager(LinearLayoutManager(activity))
 
         //init user list
         usersList= ArrayList<ModelUsers>()
@@ -54,6 +71,63 @@ class HomeFragment : Fragment() {
         //init
         firebaseAuth = FirebaseAuth.getInstance()
         return view
+    }
+
+    private fun loadPosts() {
+        // path of all post
+        var ref:DatabaseReference=FirebaseDatabase.getInstance().getReference("Posts")
+        //get all data from this reference
+        ref.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                //in case of error
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                postList.clear()
+                for (ds in p0.children){
+                    var modelPost:ModelPost?=ds.getValue(ModelPost::class.java)
+                    postList!!.add(modelPost)
+                    //adapter
+                    adapterPosts= getActivity()?.let { AdapterPosts(it, postList!!) }
+                    //set adapter
+                    recyclerView1!!.setAdapter(adapterPosts)
+                }
+            }
+
+        })
+    }
+
+    private fun searchPosts(searchQuary:String){
+
+        var ref:DatabaseReference=FirebaseDatabase.getInstance().getReference("Posts")
+        //get all data from this reference
+        ref.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                //in case of error
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                postList.clear()
+                for (ds in p0.children){
+                    var modelPost:ModelPost?=ds.getValue(ModelPost::class.java)
+                    if (modelPost != null) {
+                        if(modelPost.getpTitle()!!.toLowerCase()!!.contains(searchQuary.toLowerCase()) || modelPost.getpDescr()!!.toLowerCase()!!.contains(searchQuary.toLowerCase())){
+                           postList!!.add(modelPost)
+                        }
+
+                    }
+                    //adapter
+                    adapterPosts= getActivity()?.let { AdapterPosts(it, postList!!) }
+                    //set adapter
+                    recyclerView1!!.setAdapter(adapterPosts)
+                }
+            }
+
+        })
+
+
     }
 
     private fun getAllUsers(){
@@ -77,7 +151,7 @@ class HomeFragment : Fragment() {
                     //var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
 
                     //set adaptor to recycler view
-                    recyclerView!!.adapter
+                    recyclerView1!!.adapter
                 }
             }
 
@@ -108,7 +182,7 @@ class HomeFragment : Fragment() {
                  //   var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
 
                     //set adaptor to recycler view
-                    recyclerView!!.adapter
+                    recyclerView1!!.adapter
                 }
             }
 
@@ -139,38 +213,51 @@ class HomeFragment : Fragment() {
 
 
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        //inflate menu
-//        inflater.inflate(R.menu.menu_main, menu)
-//
-//        //search view
-//        val item: MenuItem = menu.findItem(R.id.action_search)
-//        val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
-//
-//        //search listener
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                //called when user press search button from keyboard
-//                //if search query is not empty then  search
-//                if (!TextUtils.isEmpty(query!!.trim())){
-//                    //search text contains text, search it
-//                    searchUser(query)
-//                }else{
-//                    //search text empty, get all user
-//                    getAllUsers()
-//                }
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                //called when user press search button from keyboard
-//                return false
-//            }
-//
-//        })
-//
-//        super.onCreateOptionsMenu(menu,inflater)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        //inflate menu
+        inflater.inflate(R.menu.menu_main, menu)
+        //search view to search post by post title/description
+
+
+        //search view
+        val item: MenuItem = menu.findItem(R.id.action_search)
+        val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
+
+        //search listener
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //called when user press search button from keyboard
+                //if search query is not empty then  search
+                if (!TextUtils.isEmpty(query)){
+
+                        if (query != null) {
+                            searchPosts(query)
+                        }
+                }else{
+
+                    loadPosts()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+               //called when user press search button from keyboard
+                if (!TextUtils.isEmpty(newText)){
+
+                    if (newText != null) {
+                        searchPosts(newText)
+                    }
+                }else{
+
+                    loadPosts()
+                }
+                return false
+            }
+
+        })
+
+        super.onCreateOptionsMenu(menu,inflater)
+    }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // get option id
@@ -191,3 +278,5 @@ class HomeFragment : Fragment() {
 
 
 }
+
+
