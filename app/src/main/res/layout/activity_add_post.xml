@@ -16,28 +16,32 @@
             android:id="@+id/pTitleEt"
             android:background="@drawable/edittextstyle"
             android:padding="10dp"
-            android:hint="Enter title"
+            android:hint="@string/enter_title"
             android:singleLine="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+             />
 
         <ImageView
             android:id="@+id/pImageIv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightblue"
-            android:minHeight="200dp" />
+            android:minHeight="200dp"
+            />
 
         <EditText
             android:id="@+id/pDescriptionEt"
             android:background="@drawable/edittextstyle"
             android:padding="10dp"
-            android:hint="Enter description"
+            android:hint="@string/enter_description"
             android:inputType="textCapSentences|textMultiLine"
             android:minHeight="120dp"
             android:gravity="start"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints="" />
 
 
         <Button

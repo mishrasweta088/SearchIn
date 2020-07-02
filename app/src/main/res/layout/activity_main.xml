@@ -10,35 +10,39 @@
     android:padding="20dp">
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="297dp"
+        android:layout_height="334dp"
         android:layout_above="@+id/register_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="225dp"
+        android:layout_marginBottom="141dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/searchin_logo" />
 
     <!--Button register-->
+    <!--Button Login-->
+
     <Button
         android:id="@+id/register_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register"
         android:layout_above="@id/login_btn"
-
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/btn_login"
+        android:text="@string/register"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="16dp"></Button>
-    <!--Button Login-->
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/btn_login"
         android:text="@string/login"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"/>
+        android:textSize="16sp" />
 
 </RelativeLayout>
 

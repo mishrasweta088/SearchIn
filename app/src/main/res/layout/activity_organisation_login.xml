@@ -24,7 +24,8 @@
         android:src="@drawable/searchin_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/todo"
+        />
 
     <EditText
         android:id="@+id/emailt"
@@ -54,6 +55,7 @@
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:text="@string/login"
+        android:background="@drawable/btn_login"
         android:layout_below="@+id/passwordt"/>
 
     <TextView

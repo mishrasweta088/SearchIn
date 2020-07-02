@@ -19,7 +19,7 @@
         android:gravity="center"
         android:layout_marginLeft="145dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
     <EditText
         android:id="@+id/orgname"
@@ -30,7 +30,8 @@
          android:layout_marginTop="130dp"
 
         android:inputType="textPersonName"
-        android:hint="@string/orgname" />
+        android:hint="@string/orgname"
+        android:autofillHints="" />
 
 
 
@@ -43,7 +44,8 @@
         android:layout_marginTop="190dp"
 
         android:inputType="textPersonName"
-        android:hint="@string/jobid" />
+        android:hint="@string/jobid"
+        android:autofillHints="" />
 
 
     <EditText
@@ -56,7 +58,8 @@
         android:gravity="start|top"
 
         android:inputType="textMultiLine"
-        android:hint="@string/description" />
+        android:hint="@string/description"
+        android:autofillHints="" />
 
 
     <EditText
@@ -69,7 +72,8 @@
         android:gravity="start|top"
 
         android:inputType="textMultiLine"
-        android:hint="@string/requirements" />
+        android:hint="@string/requirements"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/savebtn"

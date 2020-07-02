@@ -16,10 +16,11 @@
         android:layout_marginLeft="85dp"
         android:layout_marginTop="100dp"
         android:textColor="@color/black"
-
         android:text="@string/login_option"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:padding="5dp"
+        />
 
     <Button
         android:id="@+id/loginUser_btn"
@@ -29,8 +30,10 @@
         android:layout_alignBottom="@+id/loginOrganisation_btn"
         android:layout_marginBottom="56dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="17dp"
-        android:text="@string/login_as_user" />
+        android:textSize="17sp"
+        android:background="@drawable/btn_login"
+
+        android:text="@string/login_user" />
 
     <Button
         android:id="@+id/loginOrganisation_btn"
@@ -40,8 +43,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="251dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="17dp"
-        android:text="Login as Organisation" />
+        android:textSize="17sp"
+        android:background="@drawable/btn_login"
+        android:text="@string/login_organisation" />
 
     <TextView
         android:id="@+id/new_userTV"

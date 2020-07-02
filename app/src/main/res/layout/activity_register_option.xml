@@ -27,21 +27,23 @@
         android:id="@+id/registerUser_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dp"
-        android:textColor="@color/colorPrimaryDark"
         android:layout_above="@id/registerOrganisation_btn"
-        android:layout_marginBottom="-1dp"
-        android:text="@string/register_for_user" />
+        android:layout_marginBottom="16dp"
+        android:text="@string/register_for_user"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/btn_login"
+        android:textSize="17sp" />
 
     <Button
         android:id="@+id/registerOrganisation_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"
+        android:text="@string/register_for_organisation"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="17dp"
-        android:layout_marginBottom="251dp"
-        android:text="@string/register_for_organisation" />
+        android:background="@drawable/btn_login"
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/have_accountTV"
