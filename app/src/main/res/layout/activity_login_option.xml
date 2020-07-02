@@ -11,31 +11,36 @@
 
     <TextView
         android:id="@+id/loginOption"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="368dp"
-        android:layout_height="87dp"
+        android:layout_width="188dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="85dp"
         android:layout_marginTop="100dp"
-        android:background="@color/colorPrimary"
+        android:textColor="@color/black"
+
         android:text="@string/login_option"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/loginUser_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/loginOrganisation_btn"
         android:layout_marginBottom="56dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="17dp"
         android:text="@string/login_as_user" />
 
     <Button
         android:id="@+id/loginOrganisation_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="251dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="17dp"
         android:text="Login as Organisation" />
 
     <TextView
