@@ -34,7 +34,7 @@
                android:orientation="horizontal"
                android:text="@string/person_name"
                android:textSize="18sp"
-               android:textColor="@color/colorPrimaryDark"
+               android:textColor="@color/white"
                />
 
            <TextView
@@ -43,7 +43,7 @@
                android:layout_height="wrap_content"
                android:orientation="horizontal"
                android:text="@string/person_email"
-               android:textColor="@color/colorPrimaryDark"
+               android:textColor="@color/white"
                android:textSize="18sp" />
 
 

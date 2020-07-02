@@ -6,8 +6,8 @@
     <string name="button">Log In</string>
     <string name="button2">log off</string>
     <string name="register_option">Register Option</string>
-    <string name="register_for_user">Register For User</string>
-    <string name="register_for_organisation">Register For Organisation</string>
+    <string name="register_for_user">User</string>
+    <string name="register_for_organisation">Organisation</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -70,10 +70,17 @@
     <string name="person_name">Person Name</string>
     <string name="person_email">Person Email</string>
     <string name="additionalDetails">Additional Details</string>
-    <string name="additional">Add Details</string>
+    <string name="additional">Add or Edit Details</string>
 
     <string name="uploadbtn">Upload</string>
     <string name="upload">UPLOAD</string>
+    <string name="save">SAVE</string>
+    <string name="lastname">Lastname</string>
+    <string name="stateview">State:</string>
+    <string name="desig">Designation:</string>
+    <string name="skillsview">Skills:</string>
+    <string name="educationview">Education:</string>
+    <string name="myProfile">My Profile</string>
 
 
 </resources>

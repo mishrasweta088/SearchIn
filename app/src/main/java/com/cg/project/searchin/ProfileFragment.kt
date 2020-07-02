@@ -32,6 +32,7 @@ class ProfileFragment : Fragment() {
     //views
     lateinit var avatarTv : ImageView
     lateinit var nameTv : TextView
+    lateinit var mlastname:TextView
     lateinit var emailTv : TextView
     lateinit var madditional:TextView
 
@@ -62,6 +63,7 @@ class ProfileFragment : Fragment() {
         //init views
         avatarTv = view.findViewById(R.id.avatarTV)
         nameTv = view.findViewById(R.id.nameTv)
+        mlastname=view.findViewById(R.id.lastname)
         emailTv = view.findViewById(R.id.emailTv)
         madditional=view.findViewById(R.id.additional)
         mstate=view.findViewById(R.id.state)
@@ -127,6 +129,7 @@ class ProfileFragment : Fragment() {
                 try {
                     //get data
                     val name = "" +ds.child("firstname").getValue().toString()
+                    val lastname="" +ds.child("lastname").getValue().toString()
                     val email = "" + ds.child("email").getValue().toString()
 //                    val phone = "" + ds.child("phone").getValue().toString()
                     val image = "" + ds.child("image").getValue().toString()
@@ -137,15 +140,16 @@ class ProfileFragment : Fragment() {
 
                     //set data
                     nameTv.setText(name)
+                    mlastname.setText(lastname)
                     emailTv.setText(email)
 
-                    try {
-                        //if image is received then set
-                        Picasso.get().load(image).into(avatarTv)
-                    } catch (e: Exception) {
-                        //if there is any exception while getting image then set default
-                        Picasso.get().load(R.drawable.ic_add_image).into(avatarTv)
-                    }
+//                    try {
+//                        //if image is received then set
+//                        Picasso.get().load(image).into(avatarTv)
+//                    } catch (e: Exception) {
+//                        //if there is any exception while getting image then set default
+//                        Picasso.get().load(R.drawable.img_165522).into(avatarTv)
+//                    }
                 } catch (e: NullPointerException) {
 
                     e.printStackTrace()

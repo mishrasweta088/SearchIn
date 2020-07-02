@@ -342,7 +342,7 @@ class AddPostActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this,
-                            "Camera & Stoge both permissions are neccessary",
+                            "Camera & Storage both permissions are neccessary",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -356,7 +356,7 @@ class AddPostActivity : AppCompatActivity() {
                     if (storageAccepted) {
                         pickFromGallery()
                     } else {
-                        Toast.makeText(this, " Stoge  permission is neccessary", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, " Storage  permission is neccessary", Toast.LENGTH_SHORT)
                             .show()
                     }
                 } else {
