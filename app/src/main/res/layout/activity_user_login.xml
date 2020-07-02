@@ -54,6 +54,7 @@
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:text="@string/login"
+        android:background="@drawable/btn_login"
         android:layout_below="@+id/passwordEt"/>
 
     <TextView
