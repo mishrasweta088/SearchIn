@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import java.util.*
 
 
-class AdapterChat : RecyclerView.Adapter<AdapterUsers.MyHolder>{
+class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
 
     private val MSG_TYPE_LEFT:Int =0
     private val MSG_TYPE_RIGHT:Int =1
@@ -36,7 +36,7 @@ class AdapterChat : RecyclerView.Adapter<AdapterUsers.MyHolder>{
             return MyHolder(view)
         }
     }
-    override fun onBindViewHolder(holder: AdapterUsers.MyHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyHolder, position: Int) {
         //get data
         var message : String? = chatList.get(position).message
         var timeStamp : String? = chatList.get(position).timestamp
@@ -47,7 +47,7 @@ class AdapterChat : RecyclerView.Adapter<AdapterUsers.MyHolder>{
         var dateTime : String = DateFormat.format("dd/mm/yyyy hh:mm: aa",cal).toString()
 
         //set data
-        holder.messageTV
+        holder.messageTV.setText(message)
     }
 
     override fun getItemCount(): Int {
