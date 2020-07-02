@@ -3,10 +3,14 @@
     package="com.cg.project.searchin">
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 
+=======
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+>>>>>>> b92de2a58494fddceaf9704456e2f5a2a7520a68
 
     <application
         android:allowBackup="true"
@@ -15,8 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserAdditionalDetails"></activity>
-
+        <activity android:name=".ChatActivity"
+            android:theme="@style/AppThemeNo"/>
+        <activity android:name=".UserAdditionalDetails" />
         <activity android:name=".AddPostActivity" />
         <activity android:name=".LoginOption" />
         <activity android:name=".JobPost" />

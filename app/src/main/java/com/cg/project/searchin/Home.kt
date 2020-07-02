@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -89,6 +90,16 @@ class Home : AppCompatActivity() {
 
                     return@OnNavigationItemSelectedListener true
                 }
+
+                R.id.nav_chat -> {
+                    actionBar?.setTitle("Chats")
+                    var fragment4: ChatListFragment = ChatListFragment()
+                    var ft4: FragmentTransaction = supportFragmentManager.beginTransaction()
+                    ft4.replace(R.id.content, fragment4, "")
+                    ft4.commit()
+
+                    return@OnNavigationItemSelectedListener true
+                }
             }
             false
         }
@@ -114,6 +125,7 @@ class Home : AppCompatActivity() {
         super.onStart()
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //inflate menu
         getMenuInflater().inflate(R.menu.menu_main, menu)
@@ -136,6 +148,7 @@ class Home : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
 
 
    override fun onBackPressed() {

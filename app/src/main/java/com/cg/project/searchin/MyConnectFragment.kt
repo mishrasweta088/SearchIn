@@ -35,7 +35,7 @@ class MyConnectFragment : Fragment() {
         recycleView?.setHasFixedSize(true)
         recycleView?.setLayoutManager(LinearLayoutManager(activity))
         //init user list
-        userList = ArrayList()
+        userList = ArrayList<ModelUsers>()
         //getAll Users
         getAllUsers()
         return view
@@ -68,9 +68,9 @@ class MyConnectFragment : Fragment() {
 
                 }
 
-                var linearLayoutManager=LinearLayoutManager(context);
-                recycleView!!.layoutManager = linearLayoutManager
-                adapterUsers = AdapterUsers(activity,userList)
+                val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
+                recycleView!!.setLayoutManager(layoutManager)
+                adapterUsers = AdapterUsers(activity,userList!!)
                 recycleView!!.setAdapter(adapterUsers)
                 //adapter
 
@@ -85,16 +85,16 @@ class MyConnectFragment : Fragment() {
 
 }
 
-private fun <E> List<E>?.add() {
+fun <E> List<E>?.add(modelUsers: ModelUsers?) {
 
 }
 
 
-private fun ModelUsers?.getUid() {
+fun ModelUsers?.getUid() {
 
 }
 
-private fun <E> List<E>?.clear() {
+fun <E> List<E>?.clear() {
 
 }
 

@@ -2,7 +2,8 @@ package com.cg.project.searchin
 
 class ModelUsers {
 
-    var name: String? = null
+    var firstname: String? = null
+    var lastname: String? = null
     var email: String? = null
     var search: String? = null
     var phone: String? = null
@@ -13,6 +14,7 @@ class ModelUsers {
     constructor() {}
     constructor(
         name: String?,
+        lastname: String?,
         email: String?,
         search: String?,
         phone: String?,
@@ -20,7 +22,8 @@ class ModelUsers {
         cover: String?,
         uid: String?
     ) {
-        this.name = name
+        this.firstname = name
+        this.lastname = lastname
         this.email = email
         this.search = search
         this.phone = phone

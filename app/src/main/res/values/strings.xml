@@ -81,6 +81,7 @@
     <string name="skillsview">Skills:</string>
     <string name="educationview">Education:</string>
     <string name="myProfile">My Profile</string>
+    <string name="users">Users</string>
 
 
 </resources>
