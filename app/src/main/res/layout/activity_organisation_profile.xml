@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".Home">
+    tools:context=".Home"
+    android:background="@color/lightblue"
+    >
 
     <!--    show email of logged user -->
 

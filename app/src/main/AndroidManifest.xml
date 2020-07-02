@@ -3,14 +3,15 @@
     package="com.cg.project.searchin">
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
 
-=======
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
->>>>>>> b92de2a58494fddceaf9704456e2f5a2a7520a68
+
+
+
 
     <application
         android:allowBackup="true"
