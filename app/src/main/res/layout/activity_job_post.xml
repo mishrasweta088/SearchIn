@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightblue"
     tools:context="com.cg.project.searchin.JobPost">
 
 
@@ -72,13 +73,15 @@
 
     <Button
         android:id="@+id/savebtn"
-
+        android:gravity="center"
         android:layout_width="wrap_content"
-        android:background="@color/colorAccent"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:layout_marginLeft="160dp"
-        android:text="@string/save" />
+        android:text="@string/save"
+        android:background="@drawable/btn_login"
+        />
 
 
 </RelativeLayout>

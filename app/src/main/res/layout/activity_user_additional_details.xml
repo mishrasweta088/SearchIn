@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserAdditionalDetails">
+    tools:context=".UserAdditionalDetails"
+    android:background="@color/lightblue">
 
 
     <TextView
@@ -16,7 +17,7 @@
         android:textStyle="bold"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="100dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/black"
         android:textSize="25dp"/>
 
     <EditText
@@ -71,9 +72,8 @@
 
     <Button
         android:id="@+id/savebtn_user"
-
+        android:textColor="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
-        android:background="@color/colorAccent"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:layout_marginLeft="160dp"

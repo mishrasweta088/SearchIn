@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="@color/lightblue"
+
     android:padding="20dp">
 
     <ImageView
@@ -25,14 +27,16 @@
         android:text="@string/register"
         android:layout_above="@id/login_btn"
 
-        style="@style/Widget.AppCompat.Button.Colored"/>
-
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16dp"></Button>
     <!--Button Login-->
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"/>
 

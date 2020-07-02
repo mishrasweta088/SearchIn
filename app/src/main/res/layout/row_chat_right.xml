@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@color/lightblue">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
 
         <TextView
             android:id="@+id/timeTv"
-            android:text="02/03/2019 05:59PM"
+            android:text="@string/_02_03_2019_05_59pm"
             android:layout_width="wrap_content"
             android:textSize="12sp"
             android:textColor="#000000"
@@ -46,7 +47,7 @@
         android:id="@+id/isSeenTv"
         android:gravity="end"
         android:textAlignment="textEnd"
-        android:text="delivered"
+        android:text="@string/delivered"
         android:visibility="gone"/>
 
 

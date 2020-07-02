@@ -63,7 +63,7 @@
     <string name="designation">Designation</string>
     <string name="skills">Skills</string>
     <string name="education">Education</string>
-    <string name="login_option">login option</string>
+    <string name="login_option">Login Option</string>
     <string name="not_have_an_account_register_now">Not have an account?Register now</string>
     <string name="login_as_organisation">Login as Organisation</string>
     <string name="login_as_user">Login as user</string>
@@ -82,6 +82,8 @@
     <string name="educationview">Education:</string>
     <string name="myProfile">My Profile</string>
     <string name="users">Users</string>
+    <string name="_02_03_2019_05_59pm">02/03/2019 05:59PM</string>
+    <string name="delivered">delivered</string>
 
 
 </resources>
