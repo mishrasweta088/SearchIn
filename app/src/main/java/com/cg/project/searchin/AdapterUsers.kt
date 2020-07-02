@@ -17,10 +17,10 @@ import com.squareup.picasso.Picasso
 class AdapterUsers : RecyclerView.Adapter<AdapterUsers.MyHolder> {
 
     var context: Context? = null
-    var usersList: List<ModelUsers>? = null
+    var usersList: MutableList<ModelUsers>? = null
 
 
-    constructor(context: Context?, userList: List<ModelUsers >)
+    constructor(context: Context?, userList: MutableList<ModelUsers >)
     {
         this.context=context
         this.usersList=userList
@@ -29,7 +29,7 @@ class AdapterUsers : RecyclerView.Adapter<AdapterUsers.MyHolder> {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyHolder {
         //inflate layout(row_user xml)
         val view =
-            LayoutInflater.from(context).inflate(R.layout.row_users, viewGroup)
+            LayoutInflater.from(context).inflate(R.layout.row_users, viewGroup,false)
         return MyHolder(view)
     }
 
@@ -37,7 +37,7 @@ class AdapterUsers : RecyclerView.Adapter<AdapterUsers.MyHolder> {
         //get data
         val hisUID = usersList!!.get(i).getUid()
         val userImage = usersList!![i].image
-        val userName = usersList!![i].name
+        val userName = usersList!![i].firstname
         val userEmail = usersList!![i].email
 
         //set data

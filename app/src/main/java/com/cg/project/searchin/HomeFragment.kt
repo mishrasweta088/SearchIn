@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
                         usersList.add(modelUsers)
                     }
                     //adaptor
-                    var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
+                    //var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
 
                     //set adaptor to recycler view
                     recyclerView!!.adapter
@@ -105,7 +105,7 @@ class HomeFragment : Fragment() {
                         usersList.add(modelUsers)
                     }
                     //adaptor
-                    var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
+                 //   var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
 
                     //set adaptor to recycler view
                     recyclerView!!.adapter

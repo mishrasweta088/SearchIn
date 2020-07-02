@@ -20,7 +20,7 @@ class MyConnectFragment : Fragment() {
 
     var recycleView: RecyclerView? = null
     var adapterUsers: AdapterUsers? = null
-    var userList: List<ModelUsers>? = null
+    var userList: MutableList<ModelUsers>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,9 +68,9 @@ class MyConnectFragment : Fragment() {
 
                 }
 
-                var linearLayoutManager=LinearLayoutManager(context);
-                recycleView!!.layoutManager = linearLayoutManager
-                adapterUsers = this@MyConnectFragment.userList?.let { AdapterUsers(activity, it) }
+                val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
+                recycleView!!.setLayoutManager(layoutManager)
+                adapterUsers = AdapterUsers(activity,userList!!)
                 recycleView!!.setAdapter(adapterUsers)
                 //adapter
 
