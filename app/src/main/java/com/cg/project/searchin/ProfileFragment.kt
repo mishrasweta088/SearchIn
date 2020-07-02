@@ -183,11 +183,11 @@ class ProfileFragment : Fragment() {
 
 
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        //inflate menu
-        inflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu,inflater)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        //inflate menu
+//        inflater.inflate(R.menu.menu_main, menu)
+//        return super.onCreateOptionsMenu(menu,inflater)
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // get option id

@@ -139,40 +139,40 @@ class HomeFragment : Fragment() {
 
 
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        //inflate menu
-        inflater.inflate(R.menu.menu_main, menu)
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        //inflate menu
+//        inflater.inflate(R.menu.menu_main, menu)
+//
+//        //search view
+//        val item: MenuItem = menu.findItem(R.id.action_search)
+//        val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
+//
+//        //search listener
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                //called when user press search button from keyboard
+//                //if search query is not empty then  search
+//                if (!TextUtils.isEmpty(query!!.trim())){
+//                    //search text contains text, search it
+//                    searchUser(query)
+//                }else{
+//                    //search text empty, get all user
+//                    getAllUsers()
+//                }
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                //called when user press search button from keyboard
+//                return false
+//            }
+//
+//        })
+//
+//        super.onCreateOptionsMenu(menu,inflater)
+//    }
 
-        //search view
-        val item: MenuItem = menu.findItem(R.id.action_search)
-        val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
-
-        //search listener
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                //called when user press search button from keyboard
-                //if search query is not empty then  search
-                if (!TextUtils.isEmpty(query!!.trim())){
-                    //search text contains text, search it
-                    searchUser(query)
-                }else{
-                    //search text empty, get all user
-                    getAllUsers()
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                //called when user press search button from keyboard
-                return false
-            }
-
-        })
-
-        super.onCreateOptionsMenu(menu,inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // get option id
         var id = item.getItemId()
         if(id == R.id.action_logout){
