@@ -60,20 +60,20 @@ class JobPost : AppCompatActivity() {
         // Check for a valid oj job details.
         var flag:Boolean=true
         if (mOrgname.getText().toString().isEmpty()) {
-            mOrgname.setError(getResources().getString(R.string.name_error))
+            mOrgname.setError(getResources().getString(R.string.organisation_name_error))
             flag=false
         }
         if (mJobid.getText().toString().isEmpty()) {
-            mJobid.setError(getResources().getString(R.string.name_error))
+            mJobid.setError(getResources().getString(R.string.job_id_error))
             flag=false
         }
 
         if (mDescription.getText().toString().isEmpty()) {
-            mDescription.setError(getResources().getString(R.string.name_error));
+            mDescription.setError(getResources().getString(R.string.description_error));
             flag=false
         }
         if (mRequirements.getText().toString().isEmpty()) {
-            mRequirements.setError(getResources().getString(R.string.name_error));
+            mRequirements.setError(getResources().getString(R.string.requirements_error));
             flag=false
         }
         return flag

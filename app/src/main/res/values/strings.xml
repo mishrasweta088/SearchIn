@@ -40,6 +40,8 @@
     <string name="error_invalid_email">Email is not valid</string>
     <string name="already_have_account_login">Already have account? Login</string>
     <string name="not_have_account_register">Not have account? Register</string>
+    <string name="job_id_error">Please enter the job id</string>
+
 
     <string name="forgot_password_recover">Forgot Password? Recover</string>
 
@@ -101,7 +103,6 @@
     <string name="like">Like</string>
     <string name="comment">Comment</string>
     <string name="_1_2k_likes">1.2k Likes</string>
-    <string name="share">Share</string>
     <string name="name">Name</string>
     <string name="_33_min">33 min</string>
     <string name="title">Title</string>
@@ -111,6 +112,10 @@
     <string name="chat_list">Chat List</string>
     <string name="todo3">TODO</string>
     <string name="todo5">TODO</string>
+    <string name="organisation_name_error">Please enter organisation name</string>
+    <string name="description_error">Invalid description</string>
+    <string name="requirements_error">Please enter job requirements</string>
+    <string name="share">Share</string>
 
 
 </resources>

@@ -87,7 +87,7 @@ class AdapterPosts(
             ).show()
         }
         myHolder.shareBtn.setOnClickListener {
-            Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "share", Toast.LENGTH_SHORT).show()
         }
     }
 

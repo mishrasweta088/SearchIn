@@ -388,4 +388,9 @@ class AddPostActivity : AppCompatActivity() {
         private const val IMAGE_PICK_CAMERA_CODE = 300
         private const val IMAGE_PICK_GALLERY_CODE = 400
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
 }
