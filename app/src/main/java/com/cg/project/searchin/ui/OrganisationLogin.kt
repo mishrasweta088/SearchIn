@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.ui
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.cg.project.searchin.service.JobPost
+import com.cg.project.searchin.R
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.service
 
 import android.Manifest
 import android.app.Activity
@@ -19,8 +19,8 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.cg.project.searchin.AddPostActivity
+import com.cg.project.searchin.R
+import com.cg.project.searchin.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -239,7 +239,9 @@ class AddPostActivity : AppCompatActivity() {
     private fun pickFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE)
+        startActivityForResult(intent,
+            IMAGE_PICK_GALLERY_CODE
+        )
     }
 
     private fun pickFromCamera() {
@@ -249,7 +251,9 @@ class AddPostActivity : AppCompatActivity() {
         image_rui = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv)
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, image_rui)
-        startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE)
+        startActivityForResult(intent,
+            IMAGE_PICK_CAMERA_CODE
+        )
     }
 
     private fun checkStoragePermission(): Boolean {

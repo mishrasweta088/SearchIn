@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.service
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,11 @@ import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cg.project.searchin.R
+import com.cg.project.searchin.adapter.AdapterChat
+import com.cg.project.searchin.fragment.clear
+import com.cg.project.searchin.model.ModelChat
+import com.cg.project.searchin.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -136,7 +141,8 @@ class ChatActivity : AppCompatActivity() {
         seenListener = userRefForSeen.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.getChildren()) {
-                    var chat: ModelChat? = ds.getValue(ModelChat::class.java)
+                    var chat: ModelChat? = ds.getValue(
+                        ModelChat::class.java)
                     if (chat!!.receiver.equals(myUid) && chat.sender.equals(hisUid)) {
                         var hasSeenHashMap: HashMap<String, Any> = HashMap()
                         hasSeenHashMap.put("isSeen", true)
@@ -160,7 +166,8 @@ class ChatActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 chatList.clear()
                 for (ds in dataSnapshot.getChildren()){
-                    var chat: ModelChat? = ds.getValue(ModelChat::class.java)
+                    var chat: ModelChat? = ds.getValue(
+                        ModelChat::class.java)
                     if(chat!!.receiver.equals(myUid) && chat.sender.equals(hisUid) ||
                         chat!!.receiver.equals(hisUid) && chat.sender.equals(myUid)){
                         (chatList as ArrayList<ModelChat>).add(chat)

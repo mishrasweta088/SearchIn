@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cg.project.searchin.MyConnectFragment"
+    tools:context="com.cg.project.searchin.fragment.MyConnectFragment"
     android:background="@color/lightblue">
 
     <!-- TODO: Update blank fragment layout -->

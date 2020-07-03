@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/lightblue"
-    tools:context=".Home">
+    tools:context=".ui.Home">
 
     <!--    Framelayout:  show fragments-->
 

@@ -1,13 +1,13 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
+import com.cg.project.searchin.R
 
 class RegisterOption : AppCompatActivity() {
 

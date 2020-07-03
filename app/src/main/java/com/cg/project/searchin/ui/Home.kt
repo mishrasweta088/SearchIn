@@ -1,15 +1,20 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.ui
 
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import com.cg.project.searchin.R
+import com.cg.project.searchin.fragment.ChatListFragment
+import com.cg.project.searchin.fragment.HomeFragment
+import com.cg.project.searchin.fragment.MyConnectFragment
+import com.cg.project.searchin.fragment.ProfileFragment
+import com.cg.project.searchin.service.AddPostActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -39,7 +44,8 @@ class Home : AppCompatActivity() {
         navigationView.setOnNavigationItemSelectedListener(selectedListener)
 
         // home fragment transacion(default)
-       var fragment1:HomeFragment = HomeFragment()
+       var fragment1: HomeFragment =
+           HomeFragment()
         var ft1:FragmentTransaction=supportFragmentManager.beginTransaction()
         ft1.replace(R.id.content, fragment1, "")
         ft1.commit()
@@ -66,7 +72,8 @@ class Home : AppCompatActivity() {
                 R.id.nav_home -> {
                     // home fragment transacion
                     actionBar?.setTitle("Hello")
-                   var fragment1:HomeFragment = HomeFragment()
+                   var fragment1: HomeFragment =
+                       HomeFragment()
                     var ft1:FragmentTransaction=supportFragmentManager.beginTransaction()
                     ft1.replace(R.id.content, fragment1, "")
                     ft1.commit()
@@ -74,7 +81,8 @@ class Home : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     actionBar?.setTitle("Profile")
-                    var fragment2:ProfileFragment = ProfileFragment()
+                    var fragment2: ProfileFragment =
+                        ProfileFragment()
                     var ft2:FragmentTransaction=supportFragmentManager.beginTransaction()
                     ft2.replace(R.id.content, fragment2, "")
                     ft2.commit()
@@ -83,7 +91,8 @@ class Home : AppCompatActivity() {
 
                 R.id.nav_myConnect -> {
                     actionBar?.setTitle("My Connect")
-                    var fragment3:MyConnectFragment = MyConnectFragment()
+                    var fragment3: MyConnectFragment =
+                        MyConnectFragment()
                     var ft3:FragmentTransaction=supportFragmentManager.beginTransaction()
                     ft3.replace(R.id.content, fragment3, "")
                     ft3.commit()
@@ -93,7 +102,8 @@ class Home : AppCompatActivity() {
 
                 R.id.nav_chat -> {
                     actionBar?.setTitle("Chats")
-                    var fragment4: ChatListFragment = ChatListFragment()
+                    var fragment4: ChatListFragment =
+                        ChatListFragment()
                     var ft4: FragmentTransaction = supportFragmentManager.beginTransaction()
                     ft4.replace(R.id.content, fragment4, "")
                     ft4.commit()
@@ -140,8 +150,9 @@ class Home : AppCompatActivity() {
             checkUserStatus()
         }
 
-      if(id==R.id.action_add_post){
-            var intent:Intent=Intent(this@Home,AddPostActivity::class.java)
+      if(id== R.id.action_add_post){
+            var intent:Intent=Intent(this@Home,
+                AddPostActivity::class.java)
             startActivity(intent)
 
         }

@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.model
 
 import android.os.Message
 import android.os.ResultReceiver

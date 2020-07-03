@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.model
 
 class ModelUsers {
 

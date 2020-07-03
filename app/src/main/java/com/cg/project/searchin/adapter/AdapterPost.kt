@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.adapter
 
 
 import android.text.format.DateFormat
@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.core.Context
+import com.cg.project.searchin.model.ModelPost
+import com.cg.project.searchin.R
 import com.squareup.picasso.Picasso
 import java.util.*
 

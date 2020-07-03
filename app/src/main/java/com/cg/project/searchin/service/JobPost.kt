@@ -1,14 +1,16 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.service
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.cg.project.searchin.R
+import com.cg.project.searchin.ui.OrganisationProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -103,10 +105,12 @@ class JobPost : AppCompatActivity() {
         val reference = database.getReference("JobDetails")
         reference.child(uid).setValue(hashMap)
 
+            val intent = Intent(this@JobPost, OrganisationProfile::class.java)
+            startActivity(intent)
             Toast.makeText(this@JobPost,"Successfully Posted", Toast.LENGTH_SHORT).show()
 
-        }
 
+        }
 
     }
 

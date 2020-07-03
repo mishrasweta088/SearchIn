@@ -1,15 +1,18 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
-import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cg.project.searchin.R
+import com.cg.project.searchin.adapter.AdapterPosts
+import com.cg.project.searchin.adapter.AdapterUsers
+import com.cg.project.searchin.model.ModelPost
+import com.cg.project.searchin.model.ModelUsers
+import com.cg.project.searchin.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -35,7 +38,7 @@ class HomeFragment : Fragment() {
     var adapterUsers : AdapterUsers? =null
     var usersList: MutableList<ModelUsers>? = null
     var postList: MutableList<ModelPost>? = null
-    var adapterPosts:AdapterPosts?=null
+    var adapterPosts: AdapterPosts?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,10 +91,16 @@ class HomeFragment : Fragment() {
                 postList.clear()
                 for (ds in p0.children){
                   Log.i("post",ds.getValue().toString())
-                    var modelPost:ModelPost?=ds.getValue(ModelPost::class.java)
+                    var modelPost: ModelPost?=ds.getValue(
+                        ModelPost::class.java)
                     postList!!.add(modelPost!!)
                     //adapter
-                    adapterPosts= getActivity()?.let { AdapterPosts(it, postList!!) }
+                    adapterPosts= getActivity()?.let {
+                        AdapterPosts(
+                            it,
+                            postList!!
+                        )
+                    }
                     //set adapter
                     recyclerView1!!.setAdapter(adapterPosts)
                 }
@@ -113,7 +122,8 @@ class HomeFragment : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 postList.clear()
                 for (ds in p0.children){
-                    var modelPost:ModelPost?=ds.getValue(ModelPost::class.java)
+                    var modelPost: ModelPost?=ds.getValue(
+                        ModelPost::class.java)
                     if (modelPost != null) {
                         if(modelPost.pTitle!!.toLowerCase()!!.contains(searchQuary.toLowerCase()) || modelPost.pDescr!!.toLowerCase()!!.contains(searchQuary.toLowerCase())){
                            postList!!.add(modelPost)
@@ -121,7 +131,12 @@ class HomeFragment : Fragment() {
 
                     }
                     //adapter
-                    adapterPosts= getActivity()?.let { AdapterPosts(it, postList!!) }
+                    adapterPosts= getActivity()?.let {
+                        AdapterPosts(
+                            it,
+                            postList!!
+                        )
+                    }
                     //set adapter
                     recyclerView1!!.setAdapter(adapterPosts)
                 }
@@ -144,14 +159,19 @@ class HomeFragment : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 usersList.clear()
                 for (ds in p0.getChildren()){
-                    val modelUsers : ModelUsers? = ds.getValue(ModelUsers::class.java)
+                    val modelUsers : ModelUsers? = ds.getValue(
+                        ModelUsers::class.java)
 
                     //get all user except currently signed in user
                     if(!modelUsers.getUid().equals(fUsers!!.getUid())){
                         usersList.add(modelUsers)
                     }
                     //adaptor
-                    var adaptorUsers =  AdapterUsers(getActivity(), usersList!!)
+                    var adaptorUsers =
+                        AdapterUsers(
+                            getActivity(),
+                            usersList!!
+                        )
 
                     //set adaptor to recycler view
                     recyclerView1!!.adapter=adaptorUsers
@@ -175,7 +195,8 @@ class HomeFragment : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 usersList.clear()
                 for (ds in p0.getChildren()){
-                    val modelUsers : ModelUsers? = ds.getValue(ModelUsers::class.java)
+                    val modelUsers : ModelUsers? = ds.getValue(
+                        ModelUsers::class.java)
 
                     //get all user except currently signed in user
                     if(!modelUsers.getUid().equals(fUsers!!.getUid())){

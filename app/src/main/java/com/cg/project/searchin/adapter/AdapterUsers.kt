@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.adapter
 
 
 import android.content.Context
@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.cg.project.searchin.service.ChatActivity
+import com.cg.project.searchin.model.ModelUsers
+import com.cg.project.searchin.R
+import com.cg.project.searchin.fragment.getUid
 import com.squareup.picasso.Picasso
 
 
@@ -20,7 +22,7 @@ class AdapterUsers : RecyclerView.Adapter<AdapterUsers.MyHolder> {
     var usersList: MutableList<ModelUsers>? = null
 
 
-    constructor(context: Context?, userList: MutableList<ModelUsers >)
+    constructor(context: Context?, userList: MutableList<ModelUsers>)
     {
         this.context=context
         this.usersList=userList
@@ -53,7 +55,8 @@ class AdapterUsers : RecyclerView.Adapter<AdapterUsers.MyHolder> {
             /*click user from user list to start chatting/messaging
             start activity by putting uid of receiver
             we will use that uid to identify the user we are gonna chat  */
-            var intent:Intent = Intent(context,ChatActivity::class.java)
+            var intent:Intent = Intent(context,
+                ChatActivity::class.java)
             intent.putExtra("hisUid",hisUID.toString())
             context!!.startActivity(intent)
 

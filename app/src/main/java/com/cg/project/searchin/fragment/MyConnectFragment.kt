@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cg.project.searchin.R
+import com.cg.project.searchin.adapter.AdapterUsers
+import com.cg.project.searchin.model.ModelUsers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -59,7 +62,8 @@ class MyConnectFragment : Fragment() {
                 userList.clear()
 
                 for (ds in dataSnapshot.children) {
-                   val modelUser: ModelUsers? = ds.getValue(ModelUsers::class.java)
+                   val modelUser: ModelUsers? = ds.getValue(
+                       ModelUsers::class.java)
                     //get all users except currently signed in user
 
                     userList!!.add(modelUser!!)
@@ -70,7 +74,10 @@ class MyConnectFragment : Fragment() {
 
                 val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
                 recycleView!!.setLayoutManager(layoutManager)
-                adapterUsers = AdapterUsers(activity,userList!!)
+                adapterUsers = AdapterUsers(
+                    activity,
+                    userList!!
+                )
                 recycleView!!.setAdapter(adapterUsers)
                 //adapter
 

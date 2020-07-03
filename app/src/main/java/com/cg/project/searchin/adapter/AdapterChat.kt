@@ -1,4 +1,4 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.adapter
 
 import android.content.Context
 import android.text.format.DateFormat
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cg.project.searchin.model.ModelChat
+import com.cg.project.searchin.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
@@ -44,7 +46,7 @@ class AdapterChat : RecyclerView.Adapter<AdapterChat.MyHolder>{
         }
     }
 
-    override fun onBindViewHolder(holder: AdapterChat.MyHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyHolder, position: Int) {
         //get data
         var message : String? = chatList.get(position).message
         var timeStamp : String? = chatList.get(position).timestamp

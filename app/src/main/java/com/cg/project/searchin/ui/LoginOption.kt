@@ -1,12 +1,12 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
+import com.cg.project.searchin.R
 
 class LoginOption : AppCompatActivity() {
     lateinit var  mLoginUser: Button

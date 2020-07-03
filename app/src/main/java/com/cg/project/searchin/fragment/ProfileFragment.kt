@@ -1,18 +1,17 @@
-package com.cg.project.searchin
+package com.cg.project.searchin.fragment
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.cg.project.searchin.R
+import com.cg.project.searchin.ui.UserAdditionalDetails
+import com.cg.project.searchin.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.squareup.picasso.Picasso
 
 
 //import com.project.searchin.R
@@ -71,7 +70,8 @@ class ProfileFragment : Fragment() {
 
         madditional.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-             val intent:Intent= Intent(getActivity(),UserAdditionalDetails::class.java)
+             val intent:Intent= Intent(getActivity(),
+                 UserAdditionalDetails::class.java)
                 startActivity(intent)
 
                 }
