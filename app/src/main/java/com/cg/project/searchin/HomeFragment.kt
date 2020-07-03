@@ -3,6 +3,7 @@ package com.cg.project.searchin
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuItemCompat
@@ -32,8 +33,8 @@ class HomeFragment : Fragment() {
 
     //user adaptor nd list
     var adapterUsers : AdapterUsers? =null
-    var usersList: List<ModelUsers>? = null
-    var postList: List<ModelPost>? = null
+    var usersList: MutableList<ModelUsers>? = null
+    var postList: MutableList<ModelPost>? = null
     var adapterPosts:AdapterPosts?=null
 
     override fun onCreateView(
@@ -86,8 +87,9 @@ class HomeFragment : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 postList.clear()
                 for (ds in p0.children){
+                  Log.i("post",ds.getValue().toString())
                     var modelPost:ModelPost?=ds.getValue(ModelPost::class.java)
-                    postList!!.add(modelPost)
+                    postList!!.add(modelPost!!)
                     //adapter
                     adapterPosts= getActivity()?.let { AdapterPosts(it, postList!!) }
                     //set adapter
@@ -113,7 +115,7 @@ class HomeFragment : Fragment() {
                 for (ds in p0.children){
                     var modelPost:ModelPost?=ds.getValue(ModelPost::class.java)
                     if (modelPost != null) {
-                        if(modelPost.getpTitle()!!.toLowerCase()!!.contains(searchQuary.toLowerCase()) || modelPost.getpDescr()!!.toLowerCase()!!.contains(searchQuary.toLowerCase())){
+                        if(modelPost.pTitle!!.toLowerCase()!!.contains(searchQuary.toLowerCase()) || modelPost.pDescr!!.toLowerCase()!!.contains(searchQuary.toLowerCase())){
                            postList!!.add(modelPost)
                         }
 
@@ -148,10 +150,10 @@ class HomeFragment : Fragment() {
                         usersList.add(modelUsers)
                     }
                     //adaptor
-                    //var adaptorUsers = usersList?.let { AdapterUsers(getActivity(), it) }
+                    var adaptorUsers =  AdapterUsers(getActivity(), usersList!!)
 
                     //set adaptor to recycler view
-                    recyclerView1!!.adapter
+                    recyclerView1!!.adapter=adaptorUsers
                 }
             }
 
@@ -221,7 +223,7 @@ class HomeFragment : Fragment() {
 
         //search view
         val item: MenuItem = menu.findItem(R.id.action_search)
-        val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
+     /*   val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
 
         //search listener
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -255,7 +257,7 @@ class HomeFragment : Fragment() {
             }
 
         })
-
+*/
         super.onCreateOptionsMenu(menu,inflater)
     }
 

@@ -31,15 +31,15 @@ class AdapterPosts(
         i: Int
     ) {
         //get data
-        val uId = postList[i].getuId()
-        val uEmail = postList[i].getuEmail()
-        val uName = postList[i].getuName()
-        val uDp = postList[i].getuDp()
-        val pId = postList[i].getpId()
-        val pTitle = postList[i].getpTitle()
-        val pDescription = postList[i].getpDescr()
-        val pImage = postList[i].getpImage()
-        val pTimeStamp = postList[i].getpTime()
+        val uId = postList[i].uid
+        val uEmail = postList[i].uEmail
+        val uName = postList[i].uName
+        val uDp = postList[i].uDp
+        val pId = postList[i].pId
+        val pTitle = postList[i].pTitle
+        val pDescription = postList[i].pDescr
+        val pImage = postList[i].pImage
+        val pTimeStamp = postList[i].pTime
 
         //convert timestamp to dd/mm/yyyy  hh:mm  am/pm
         val calender =

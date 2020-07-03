@@ -81,7 +81,7 @@
             android:autofillHints="" />
 
 <!--        Button send message-->
-        <ImageView
+        <ImageButton
             android:id="@+id/sendBtn"
             android:src="@drawable/ic_send"
             android:background="@null"

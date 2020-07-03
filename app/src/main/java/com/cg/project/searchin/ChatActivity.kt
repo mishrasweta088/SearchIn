@@ -28,7 +28,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var nameTv : TextView
     lateinit var userStatusTv : TextView
     lateinit var messageEt: EditText
-    lateinit var sendBtn : Button
+    lateinit var sendBtn : ImageButton
 
     //firebase auth
     lateinit var firebaseAuth: FirebaseAuth
@@ -167,11 +167,11 @@ class ChatActivity : AppCompatActivity() {
                     }
 
                     //adaptor
-                    adapterChat = AdapterChat(this@ChatActivity,
+                   /* adapterChat = AdapterChat(this@ChatActivity,
                         chatList as ArrayList<ModelChat>,hisImage)
                     adapterChat.notifyDataSetChanged()
                     //set adaptor to recyclerview
-                    recyclerView.setAdapter(adapterChat)
+                    recyclerView.setAdapter(adapterChat)*/
                 }
             }
 
