@@ -21,7 +21,8 @@
         android:textColor="@color/black"
 
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginStart="80dp" />
 
     <Button
         android:id="@+id/registerUser_btn"

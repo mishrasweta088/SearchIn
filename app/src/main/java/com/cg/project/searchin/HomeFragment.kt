@@ -130,6 +130,7 @@ class HomeFragment : Fragment() {
         })
 
 
+
     }
 
     private fun getAllUsers(){
@@ -208,6 +209,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true) // to show menu option in fragments
         super.onCreate(savedInstanceState)
@@ -215,7 +217,8 @@ class HomeFragment : Fragment() {
 
 
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         //inflate menu
         inflater.inflate(R.menu.menu_main, menu)
         //search view to search post by post title/description
@@ -223,7 +226,7 @@ class HomeFragment : Fragment() {
 
         //search view
         val item: MenuItem = menu.findItem(R.id.action_search)
-     /*   val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
+     *//*   val searchView : SearchView = MenuItemCompat.getActionView(item) as SearchView
 
         //search listener
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -257,7 +260,7 @@ class HomeFragment : Fragment() {
             }
 
         })
-*/
+*//*
         super.onCreateOptionsMenu(menu,inflater)
     }
 
@@ -277,7 +280,7 @@ class HomeFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
-
+*/
 
 }
 

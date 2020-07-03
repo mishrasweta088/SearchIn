@@ -18,7 +18,8 @@
         android:layout_marginTop="35dp"
         android:layout_marginLeft="100dp"
         android:textColor="@color/black"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:layout_marginStart="100dp" />
 
     <EditText
         android:id="@+id/state"
@@ -30,7 +31,8 @@
 
         android:inputType="textPersonName"
         android:hint="@string/state"
-        android:autofillHints="" />
+        android:autofillHints=""
+        android:layout_marginStart="40dp" />
 
 
 
@@ -44,7 +46,8 @@
 
         android:inputType="textPersonName"
         android:hint="@string/designation"
-        android:autofillHints="" />
+        android:autofillHints=""
+        android:layout_marginStart="40dp" />
 
 
     <EditText
@@ -58,7 +61,8 @@
 
         android:inputType="textMultiLine"
         android:hint="@string/skills"
-        android:autofillHints="" />
+        android:autofillHints=""
+        android:layout_marginStart="40dp" />
 
 
     <EditText
@@ -72,7 +76,8 @@
 
         android:inputType="textMultiLine"
         android:hint="@string/education"
-        android:autofillHints="" />
+        android:autofillHints=""
+        android:layout_marginStart="40dp" />
 
     <Button
         android:id="@+id/savebtn_user"
@@ -83,7 +88,8 @@
         android:layout_marginLeft="160dp"
         android:background="@drawable/btn_login"
         android:gravity="center"
-        android:text="@string/save" />
+        android:text="@string/save"
+        android:layout_marginStart="160dp" />
 
 
 </RelativeLayout>

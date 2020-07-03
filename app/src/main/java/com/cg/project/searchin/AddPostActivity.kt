@@ -69,7 +69,7 @@ class AddPostActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUserStatus()
         actionBar.setSubtitle(email)
-        userDbRef = FirebaseDatabase.getInstance().getReference("Users")
+        userDbRef = FirebaseDatabase.getInstance().getReference("Userprofile")
         val query =
             userDbRef!!.orderByChild("email").equalTo(email)
         query.addValueEventListener(object : ValueEventListener {
@@ -108,7 +108,7 @@ class AddPostActivity : AppCompatActivity() {
                 return@OnClickListener
             }
             if (image_rui == null) {
-                uploadData(title, description, "no image")
+                uploadData(title, description, "noimage")
             } else {
                 uploadData(title, description, image_rui.toString())
             }
@@ -124,7 +124,7 @@ class AddPostActivity : AppCompatActivity() {
         pd!!.show()
         val timeStamp = System.currentTimeMillis().toString()
         val filePathAndName = "Posts/post_$timeStamp"
-        if (uri != "noImage") {
+        if (!uri.equals("noimage")) {
             val ref =
                 FirebaseStorage.getInstance().reference.child(filePathAndName)
             ref.putFile(Uri.parse(uri))
@@ -342,7 +342,7 @@ class AddPostActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this,
-                            "Camera & Storage both permissions are neccessary",
+                            "Camera & Stoge both permissions are neccessary",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -356,7 +356,7 @@ class AddPostActivity : AppCompatActivity() {
                     if (storageAccepted) {
                         pickFromGallery()
                     } else {
-                        Toast.makeText(this, " Storage  permission is neccessary", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, " Stoge  permission is neccessary", Toast.LENGTH_SHORT)
                             .show()
                     }
                 } else {

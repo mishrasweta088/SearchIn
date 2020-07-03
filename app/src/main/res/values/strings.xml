@@ -98,6 +98,19 @@
     <string name="_02_03_2019_05_59pm">02/03/2019 05:59PM</string>
     <string name="delivered">delivered</string>
     <string name="his_message">His Message</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="_1_2k_likes">1.2k Likes</string>
+    <string name="share">Share</string>
+    <string name="name">Name</string>
+    <string name="_33_min">33 min</string>
+    <string name="title">Title</string>
+    <string name="the_description_of_the_post">The DEscription of The Post</string>
+    <string name="todo1">TODO</string>
+    <string name="todo2">TODO</string>
+    <string name="chat_list">Chat List</string>
+    <string name="todo3">TODO</string>
+    <string name="todo5">TODO</string>
 
 
 </resources>

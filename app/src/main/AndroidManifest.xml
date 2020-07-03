@@ -12,11 +12,9 @@
 
 
 
-<<<<<<< HEAD
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-=======
->>>>>>> 4e955325cfb3718fce8cab06c33f6af37bbddd38
+
+
 
     <application
         android:allowBackup="true"

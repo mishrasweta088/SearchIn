@@ -29,7 +29,7 @@ class Home : AppCompatActivity() {
 
         //Actionbar and its title
         var actionBar: ActionBar? = getSupportActionBar();
-        actionBar!!.setTitle("Home");
+        actionBar!!.setTitle("Dashboard");
 
         //init
         firebaseAuth = FirebaseAuth.getInstance()
@@ -140,7 +140,7 @@ class Home : AppCompatActivity() {
             checkUserStatus()
         }
 
-        if(id==R.id.action_add_post){
+      if(id==R.id.action_add_post){
             var intent:Intent=Intent(this@Home,AddPostActivity::class.java)
             startActivity(intent)
 

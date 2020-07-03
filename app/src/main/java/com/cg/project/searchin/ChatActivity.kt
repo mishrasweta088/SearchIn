@@ -166,8 +166,8 @@ class ChatActivity : AppCompatActivity() {
                         (chatList as ArrayList<ModelChat>).add(chat)
                     }
 
-                    //adaptor
-                   /* adapterChat = AdapterChat(this@ChatActivity,
+                   /* //adaptor
+                    adapterChat = AdapterChat(this@ChatActivity,
                         chatList as ArrayList<ModelChat>,hisImage)
                     adapterChat.notifyDataSetChanged()
                     //set adaptor to recyclerview

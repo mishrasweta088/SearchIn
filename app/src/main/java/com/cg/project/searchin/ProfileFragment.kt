@@ -180,10 +180,10 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+   /* override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true) // to show menu option in fragments
         super.onCreate(savedInstanceState)
-    }
+    }*/
 
 
 
